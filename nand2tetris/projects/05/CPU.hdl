@@ -39,5 +39,49 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+    // Tam-CO's code here:
+    
+    // 15 14 13 12 11 10 09 08 07 06 05 04 03 02 01 00
+    // 1  1  1  a  c1 c2 c3 c4 c5 c6 d1 d2 d3 j1 j2 j3
+    
+    And(a=instruction[15], b=true, out=instructionC);
+    Not(in=instructionC, out=instructionA);
+    
+    // Calculate inA and loadA
+    And(a=instructionC, b=instruction[5], out=instCAndDestA);
+    Or(a=instructionA, b=instCAndDestA, out=loadA);
+    Mux16(a=outALU, b=instruction, sel=instructionA, out=inA);
+    
+    // Calculate loadD
+    And(a=instructionC, b=instruction[4], out=loadD);
+    
+    // A and D registers
+    ARegister(in=inA, load=loadA, out=outA, out[0..14]=addressM);
+    DRegister(in=inD, load=loadD, out=outD);
+    
+    // Calculate y input of ALU
+    Mux16(a=outA, b=inM, sel=instruction[12], out=aluInY);
+    ALU(x=outD, y=aluInY, zx=instruction[11], nx=instruction[10], zy=instruction[9], ny=instruction[8], f=instruction[7], no=instruction[6],
+    	out=outALU, out=inD, out=outM, zr=zrALU, ng=ngALU);
+    
+    // Calculate if output of ALU is positive
+    Not(in=zrALU, out=notZr);
+    Not(in=ngALU, out=notNg);
+    And(a=notZr, b=notNg, out=psALU);
+    
+    // Calculate loadPC
+    And(a=instruction[1], b=zrALU, out=zrMatched);
+    And(a=instruction[2], b=ngALU, out=ngMatched);
+    And(a=instruction[0], b=psALU, out=psMatched);
+    
+    And(a=instructionC, b=zrMatched, out=jumpZR);
+    And(a=instructionC, b=ngMatched, out=jumpNG);
+    And(a=instructionC, b=psMatched, out=jumpPS);
+    Or(a=jumpZR, b=jumpNG, out=jumpZROrNG);
+    Or(a=jumpZROrNG, b=jumpPS, out=loadPC);
+    
+    PC(in=outA, load=loadPC, inc=true, reset=reset, out[0..14]=pc);
+    
+    // Calculate writeM
+    And(a=instructionC, b=instruction[3], out=writeM);
 }
