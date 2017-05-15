@@ -47,8 +47,10 @@ public class Parser {
 				try {
 					Integer.parseInt(instructionA);
 				} catch (NumberFormatException e) {
-					symbolTable.putIfAbsent(instructionA, variableLocation);
-					variableLocation++;
+					if (!symbolTable.containsKey(instructionA)) {
+						symbolTable.put(instructionA, variableLocation);
+						variableLocation++;
+					}
 				}
 			}
 		}
