@@ -20,9 +20,9 @@ public class VMTranslator {
 		CodeGenerator generator = new CodeGenerator();
 
 		try {
-			List<String> commands = parser.parse(sourceCode);
+			List<String> vmCommands = parser.parse(sourceCode);
 
-		}catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("IOException: " + e.getMessage());
 		}
 	}

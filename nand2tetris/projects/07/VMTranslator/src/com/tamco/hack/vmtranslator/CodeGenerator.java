@@ -142,22 +142,9 @@ public class CodeGenerator {
 	private List<String> translateCommandNeg() {
 		List<String> asms = new ArrayList<>();
 
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=-M");
 
 		return asms;
 	}
