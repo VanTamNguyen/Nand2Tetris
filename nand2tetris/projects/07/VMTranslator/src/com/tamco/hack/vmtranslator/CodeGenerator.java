@@ -11,7 +11,15 @@ public class CodeGenerator {
 
 	private static final String SPACE = " ";
 
-	public CodeGenerator() {}
+	private String vmName;
+
+	private int eqCount = 0;
+
+	private int gtCount = 0;
+
+	private int ltCount = 0;
+
+	public CodeGenerator(String vmName) { this.vmName = vmName; }
 
 	public List<String> generateAsmCode(List<String> vmCommands) throws SyntaxException {
 		List<String> asmCommands = new ArrayList<>();
@@ -126,7 +134,7 @@ public class CodeGenerator {
 		asms.add("A=M-1");
 		asms.add("D=M");
 
-		// Add
+		// Sub
 		asms.add("@R13");
 		asms.add("D=D-M");
 
@@ -151,6 +159,27 @@ public class CodeGenerator {
 
 	private List<String> translateCommandEQ() {
 		List<String> asms = new ArrayList<>();
+
+		// Load second operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		// Load first operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+
+		// Sub
+		asms.add("@R13");
+		asms.add("D=D-M");
+
 
 		asms.add("");
 		asms.add("");
