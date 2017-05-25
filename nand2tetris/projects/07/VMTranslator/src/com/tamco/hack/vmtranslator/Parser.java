@@ -12,6 +12,8 @@ import java.util.List;
  */
 public class Parser {
 
+	private static final String SPACE = " ";
+
 	public Parser() {}
 
 	public List<String> parse(File sourceCode) throws IOException {
@@ -39,6 +41,6 @@ public class Parser {
 	}
 
 	private String removeSpaces(String line) {
-		return line.replaceAll("\\s+", " ");
+		return line.replaceAll("\\s+", SPACE);
 	}
 }
