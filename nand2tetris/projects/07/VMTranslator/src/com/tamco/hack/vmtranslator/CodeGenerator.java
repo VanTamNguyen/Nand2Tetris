@@ -41,11 +41,229 @@ public class CodeGenerator {
 			return Collections.emptyList();
 
 		} else if (elements.length == 3) {
-			return Collections.emptyList();
+			if ("push".equals(elements[0]) || "pop".equals(elements[0])) {
+				return translateMemoryAccessCommand(elements);
+
+			} else {
+				throw new SyntaxException("SyntaxException at command: " + vmCommand);
+			}
 
 		} else {
 			throw new SyntaxException("SyntaxException at command: " + vmCommand);
 		}
+	}
+
+	private List<String> translateMemoryAccessCommand(String[] elements) throws SyntaxException {
+		String command = elements[0];
+		String segment = elements[1];
+		String indexStr = elements[2];
+
+		String vmCommand = command + " " + segment + " " + indexStr;
+
+		int index;
+		try {
+			 index = Integer.parseInt(indexStr);
+		} catch (NumberFormatException e) {
+			throw new SyntaxException("SyntaxException at command: " + vmCommand);
+		}
+
+		if ("push".equals(command)) {
+			return translateCommandPush(segment, index);
+
+		} else if ("pop".equals(command)) {
+			return translateCommandPop(segment, index);
+
+		} else {
+			throw new SyntaxException("SyntaxException at command: " + vmCommand);
+		}
+	}
+
+	private List<String> translateCommandPush(String segment, int index) throws SyntaxException {
+		if ("argument".equals(segment)) {
+			return translatePushArgument(index);
+
+		} else if ("local".equals(segment)) {
+			return translatePushLocal(index);
+
+		} else if ("this".equals(segment)) {
+			return translatePushThis(index);
+
+		} else if ("that".equals(segment)) {
+			return translatePushThat(index);
+
+		} else if ("static".equals(segment)) {
+			return translatePushStatic(index);
+
+		} else if ("constant".equals(segment)) {
+			return translatePushConstant(index);
+
+		} else if ("pointer".equals(segment)) {
+			return translatePushPointer(index);
+
+		} else if ("temp".equals(segment)) {
+			return translatePushTemp(index);
+
+		} else {
+			throw new SyntaxException("SyntaxException at command: push " + segment + " " + index);
+		}
+	}
+
+	private List<String> translatePushArgument(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push argument " + index);
+
+		// Load (segment + index) content
+		asms.add("@ARG");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("A=D+A");
+		asms.add("D=M");
+
+		// Push to stack
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M+1");
+
+		return asms;
+	}
+
+	private List<String> translatePushLocal(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push local " + index);
+
+		// Load (segment + index) content
+		asms.add("@LCL");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("A=D+A");
+		asms.add("D=M");
+
+		// Push to stack
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M+1");
+
+		return asms;
+	}
+
+	private List<String> translatePushThis(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push this " + index);
+
+		// Load (segment + index) content
+		asms.add("@THIS");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("A=D+A");
+		asms.add("D=M");
+
+		// Push to stack
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M+1");
+
+		return asms;
+	}
+
+	private List<String> translatePushThat(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push that " + index);
+
+		// Load (segment + index) content
+		asms.add("@THAT");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("A=D+A");
+		asms.add("D=M");
+
+		// Push to stack
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M+1");
+
+		return asms;
+	}
+
+	private List<String> translatePushStatic(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push static " + index);
+
+		return asms;
+	}
+
+	private List<String> translatePushConstant(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push constant " + index);
+
+		return asms;
+	}
+
+	private List<String> translatePushPointer(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push pointer " + index);
+
+		return asms;
+	}
+
+	private List<String> translatePushTemp(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// push temp " + index);
+
+		return asms;
+	}
+
+	private List<String> translateCommandPop(String segment, int index) throws SyntaxException {
+		if ("argument".equals(segment)) {
+
+		} else if ("local".equals(segment)) {
+
+		} else if ("this".equals(segment)) {
+
+		} else if ("that".equals(segment)) {
+
+		} else if ("static".equals(segment)) {
+
+		} else if ("pointer".equals(segment)) {
+
+		} else if ("temp".equals(segment)) {
+
+		} else {
+			throw new SyntaxException("SyntaxException at command: pop " + segment + " " + index);
+		}
+
+		return null;
 	}
 
 	private List<String> translateArithmeticLogicCommand(String[] elements) throws SyntaxException {
