@@ -451,21 +451,7 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop static " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
-		// Update stack pointer
-		asms.add("@SP");
-		asms.add("M=M-1");
 
 		return asms;
 	}
@@ -476,21 +462,7 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop pointer " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
-		// Update stack pointer
-		asms.add("@SP");
-		asms.add("M=M-1");
 
 		return asms;
 	}
@@ -501,21 +473,7 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop temp " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
-		// Update stack pointer
-		asms.add("@SP");
-		asms.add("M=M-1");
 
 		return asms;
 	}
