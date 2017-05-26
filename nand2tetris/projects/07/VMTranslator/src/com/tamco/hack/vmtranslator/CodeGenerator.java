@@ -331,21 +331,25 @@ public class CodeGenerator {
 
 	private List<String> translatePopArgument(int index) {
 		List<String> asms = new ArrayList<>();
-
 		// Add comment to asm
 		asms.add("// pop argument " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		//
+		asms.add("@ARG");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		//
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
 
 		// Update stack pointer
 		asms.add("@SP");
