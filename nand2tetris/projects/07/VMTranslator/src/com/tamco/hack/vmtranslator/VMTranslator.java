@@ -1,6 +1,8 @@
 package com.tamco.hack.vmtranslator;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -37,7 +39,20 @@ public class VMTranslator {
 
 				try {
 					List<String> vmCommands = parser.parse(sourceCode);
-					generator.generateAsmCode(vmCommands);
+					List<String> asmCommands = generator.generateAsmCode(vmCommands);
+
+					String sourceFileName = sourceCode.getName();
+					File sourceParent = sourceCode.getParentFile();
+					int dotIndex = sourceFileName.indexOf(".");
+					String targetFileName = sourceFileName.substring(0, dotIndex) + ".asm";
+					File targetFile = new File(sourceParent, targetFileName);
+
+					FileWriter fileWriter = new FileWriter(targetFile);
+					BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+					for (String asm : asmCommands) {
+						bufferedWriter.write(asm + "\n");
+					}
+					bufferedWriter.close();
 
 				} catch (IOException e) {
 					System.out.println("IOException: " + e.getMessage());
