@@ -607,31 +607,31 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// and");
 
-        // Load second operand
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("D=M");
-        asms.add("@R13");
-        asms.add("M=D");
+		// Load second operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("M=D");
 
-        // Update stack pointer
-        asms.add("@SP");
-        asms.add("M=M-1");
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
 
-        // Load first operand
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("D=M");
+		// Load first operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
 
-        // And
-        asms.add("@R13");
-        asms.add("D=D&M");
+		// And
+		asms.add("@R13");
+		asms.add("D=D&M");
 
 
-        // Store the result
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("M=D");
+		// Store the result
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=D");
 
 		return asms;
 	}
@@ -642,31 +642,31 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// or");
 
-        // Load second operand
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("D=M");
-        asms.add("@R13");
-        asms.add("M=D");
+		// Load second operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("M=D");
 
-        // Update stack pointer
-        asms.add("@SP");
-        asms.add("M=M-1");
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
 
-        // Load first operand
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("D=M");
+		// Load first operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
 
-        // Or
-        asms.add("@R13");
-        asms.add("D=D|M");
+		// Or
+		asms.add("@R13");
+		asms.add("D=D|M");
 
 
-        // Store the result
-        asms.add("@SP");
-        asms.add("A=M-1");
-        asms.add("M=D");
+		// Store the result
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=D");
 
 		return asms;
 	}
