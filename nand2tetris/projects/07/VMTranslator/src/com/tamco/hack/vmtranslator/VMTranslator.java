@@ -17,7 +17,7 @@ public class VMTranslator {
 //			return;
 //		}
 
-		File sourceCode = new File("../StackArithmetic");
+		File sourceCode = new File("../MemoryAccess");
 		translateSrc(sourceCode, "src");
 	}
 
@@ -25,13 +25,13 @@ public class VMTranslator {
 		if (sourceCode.isDirectory()) {
 			File[] files = sourceCode.listFiles();
 			for (File file : files) {
-				String path = sourceCode.isDirectory() ? folderPath + "/" + sourceCode.getName() : folderPath;
+				String path = sourceCode.isDirectory() ? folderPath + "." + sourceCode.getName() : folderPath;
 				translateSrc(file, path);
 			}
 
 		} else if (sourceCode.isFile()) {
 			if (sourceCode.getName().endsWith(".vm")) {
-				String vmName = folderPath + "/" + sourceCode.getName();
+				String vmName = folderPath + "." + sourceCode.getName();
 				System.out.println("**************** Start translating " + vmName + " ****************");
 
 				Parser parser = new Parser();
