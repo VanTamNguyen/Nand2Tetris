@@ -310,17 +310,73 @@ public class CodeGenerator {
 	private List<String> translateCommandAnd() {
 		List<String> asms = new ArrayList<>();
 
+        // Load second operand
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("D=M");
+        asms.add("@R13");
+        asms.add("M=D");
+
+        // Update stack pointer
+        asms.add("@SP");
+        asms.add("M=M-1");
+
+        // Load first operand
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("D=M");
+
+        // And
+        asms.add("@R13");
+        asms.add("D=D&M");
+
+
+        // Store the result
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("M=D");
+
 		return asms;
 	}
 
 	private List<String> translateCommandOr() {
 		List<String> asms = new ArrayList<>();
 
+        // Load second operand
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("D=M");
+        asms.add("@R13");
+        asms.add("M=D");
+
+        // Update stack pointer
+        asms.add("@SP");
+        asms.add("M=M-1");
+
+        // Load first operand
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("D=M");
+
+        // Or
+        asms.add("@R13");
+        asms.add("D=D|M");
+
+
+        // Store the result
+        asms.add("@SP");
+        asms.add("A=M-1");
+        asms.add("M=D");
+
 		return asms;
 	}
 
 	private List<String> translateCommandNot() {
 		List<String> asms = new ArrayList<>();
+
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=!M");
 
 		return asms;
 	}
