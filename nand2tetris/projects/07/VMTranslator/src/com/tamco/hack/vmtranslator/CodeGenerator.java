@@ -451,7 +451,16 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop static " + index);
 
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
 
+		asms.add("@" + vmName + ".static." + index);
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
 
 		return asms;
 	}
@@ -462,6 +471,24 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop pointer " + index);
 
+		asms.add("@3");
+		asms.add("D=A");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
+
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
 
 
 		return asms;
@@ -473,7 +500,24 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop temp " + index);
 
+		asms.add("@5");
+		asms.add("D=A");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
 
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
 
 		return asms;
 	}
