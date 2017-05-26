@@ -364,17 +364,21 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop local " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		asms.add("@LCL");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		//
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
 
 		// Update stack pointer
 		asms.add("@SP");
@@ -389,17 +393,21 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop this " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		asms.add("@THIS");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		//
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
 
 		// Update stack pointer
 		asms.add("@SP");
@@ -414,17 +422,21 @@ public class CodeGenerator {
 		// Add comment to asm
 		asms.add("// pop that " + index);
 
-		// Load top most stack content
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		asms.add("@THAT");
+		asms.add("D=M");
+		asms.add("@" + index);
+		asms.add("D=D+A");
+		asms.add("@R13");
+		asms.add("M=D");
 
-		// Pop to segment
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		//
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("A=M");
+		asms.add("M=D");
+
 
 		// Update stack pointer
 		asms.add("@SP");
