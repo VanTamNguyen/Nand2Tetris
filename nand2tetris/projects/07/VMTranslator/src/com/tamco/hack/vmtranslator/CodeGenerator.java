@@ -258,7 +258,51 @@ public class CodeGenerator {
 	}
 
 	private List<String> translateCommandLT() {
+		String labelLTTrue = vmName + ".LT.true." + ltCount;
+		String labelLTEnd = vmName + ".LT.end." + ltCount;
+		ltCount++;
+
 		List<String> asms = new ArrayList<>();
+
+		// Load second operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("M=D");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		// Load first operand
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+
+		// Sub
+		asms.add("@R13");
+		asms.add("D=D-M");
+
+		// Check to jump
+		asms.add("@" + labelLTTrue);
+		asms.add("D;JLT");
+
+		// No jump
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=0");
+		asms.add("@" + labelLTEnd);
+		asms.add("0;JMP");
+
+		// Jump to here if true/lesser than
+		asms.add("(" + labelLTTrue + ")");
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=-1");
+
+		// End
+		asms.add("(" + labelLTEnd + ")");
 
 		return asms;
 	}
