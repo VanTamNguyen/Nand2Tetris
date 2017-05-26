@@ -17,7 +17,7 @@ public class VMTranslator {
 //			return;
 //		}
 
-		File sourceCode = new File("VMCode/");
+		File sourceCode = new File("../StackArithmetic");
 		translateSrc(sourceCode, "src");
 	}
 
