@@ -158,6 +158,10 @@ public class CodeGenerator {
 	}
 
 	private List<String> translateCommandEQ() {
+		String labelEQTrue = vmName + ".EQ.true." + eqCount;
+		String labelEQEnd = vmName + ".EQ.end." + eqCount;
+		eqCount++;
+
 		List<String> asms = new ArrayList<>();
 
 		// Load second operand
@@ -180,23 +184,25 @@ public class CodeGenerator {
 		asms.add("@R13");
 		asms.add("D=D-M");
 
+		// Check to jump
+		asms.add("@" + labelEQTrue);
+		asms.add("D;JEQ");
 
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
+		// No jump
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=0");
+		asms.add("@" + labelEQEnd);
+		asms.add("0;JMP");
+
+		// Jump to here if true/equal
+		asms.add("(" + labelEQTrue + ")");
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("M=-1");
+
+		// End
+		asms.add("(" + labelEQEnd + ")");
 
 		return asms;
 	}
@@ -204,45 +210,11 @@ public class CodeGenerator {
 	private List<String> translateCommandGT() {
 		List<String> asms = new ArrayList<>();
 
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
 		return asms;
 	}
 
 	private List<String> translateCommandLT() {
 		List<String> asms = new ArrayList<>();
-
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
 
 		return asms;
 	}
@@ -250,68 +222,17 @@ public class CodeGenerator {
 	private List<String> translateCommandAnd() {
 		List<String> asms = new ArrayList<>();
 
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
 		return asms;
 	}
 
 	private List<String> translateCommandOr() {
 		List<String> asms = new ArrayList<>();
 
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-
 		return asms;
 	}
 
 	private List<String> translateCommandNot() {
 		List<String> asms = new ArrayList<>();
-
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
-		asms.add("");
 
 		return asms;
 	}
