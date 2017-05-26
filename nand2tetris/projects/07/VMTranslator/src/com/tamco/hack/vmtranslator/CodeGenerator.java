@@ -86,6 +86,9 @@ public class CodeGenerator {
 	private List<String> translateCommandAdd() {
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// add");
+
 		// Load second operand
 		asms.add("@SP");
 		asms.add("A=M-1");
@@ -117,6 +120,9 @@ public class CodeGenerator {
 
 	private List<String> translateCommandSub() {
 		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// sub");
 
 		// Load second operand
 		asms.add("@SP");
@@ -150,6 +156,9 @@ public class CodeGenerator {
 	private List<String> translateCommandNeg() {
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// neg");
+
 		asms.add("@SP");
 		asms.add("A=M-1");
 		asms.add("M=-M");
@@ -163,6 +172,9 @@ public class CodeGenerator {
 		eqCount++;
 
 		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// eq");
 
 		// Load second operand
 		asms.add("@SP");
@@ -214,6 +226,9 @@ public class CodeGenerator {
 
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// gt");
+
 		// Load second operand
 		asms.add("@SP");
 		asms.add("A=M-1");
@@ -264,6 +279,9 @@ public class CodeGenerator {
 
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// lt");
+
 		// Load second operand
 		asms.add("@SP");
 		asms.add("A=M-1");
@@ -310,6 +328,9 @@ public class CodeGenerator {
 	private List<String> translateCommandAnd() {
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// and");
+
         // Load second operand
         asms.add("@SP");
         asms.add("A=M-1");
@@ -342,6 +363,9 @@ public class CodeGenerator {
 	private List<String> translateCommandOr() {
 		List<String> asms = new ArrayList<>();
 
+		// Add comment to asm
+		asms.add("// or");
+
         // Load second operand
         asms.add("@SP");
         asms.add("A=M-1");
@@ -373,6 +397,9 @@ public class CodeGenerator {
 
 	private List<String> translateCommandNot() {
 		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// not");
 
 		asms.add("@SP");
 		asms.add("A=M-1");
