@@ -304,24 +304,204 @@ public class CodeGenerator {
 
 	private List<String> translateCommandPop(String segment, int index) throws SyntaxException {
 		if ("argument".equals(segment)) {
+			return translatePopArgument(index);
 
 		} else if ("local".equals(segment)) {
+			return translatePopLocal(index);
 
 		} else if ("this".equals(segment)) {
+			return translatePopThis(index);
 
 		} else if ("that".equals(segment)) {
+			return translatePopThat(index);
 
 		} else if ("static".equals(segment)) {
+			return translatePopStatic(index);
 
 		} else if ("pointer".equals(segment)) {
+			return translatePopPointer(index);
 
 		} else if ("temp".equals(segment)) {
+			return translatePopTemp(index);
 
 		} else {
 			throw new SyntaxException("SyntaxException at command: pop " + segment + " " + index);
 		}
+	}
 
-		return null;
+	private List<String> translatePopArgument(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop argument " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopLocal(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop local " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopThis(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop this " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopThat(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop that " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopStatic(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop static " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopPointer(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop pointer " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
+	}
+
+	private List<String> translatePopTemp(int index) {
+		List<String> asms = new ArrayList<>();
+
+		// Add comment to asm
+		asms.add("// pop temp " + index);
+
+		// Load top most stack content
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Pop to segment
+		asms.add("");
+		asms.add("");
+		asms.add("");
+
+		// Update stack pointer
+		asms.add("@SP");
+		asms.add("M=M-1");
+
+		return asms;
 	}
 
 	private List<String> translateArithmeticLogicCommand(String[] elements) throws SyntaxException {
