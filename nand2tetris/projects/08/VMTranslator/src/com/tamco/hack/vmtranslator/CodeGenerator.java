@@ -48,6 +48,22 @@ public class CodeGenerator {
 			if ("push".equals(elements[0]) || "pop".equals(elements[0])) {
 				return translateMemoryAccessCommand(elements);
 
+			} else if ("call".equals(elements[0])) {
+				try {
+					int nArgs = Integer.parseInt(elements[2]);
+					return translateCommandCall(elements[1], nArgs);
+				} catch (NumberFormatException e) {
+					throw new SyntaxException("SyntaxException at command: " + vmCommand);
+				}
+
+			} else if ("function".equals(elements[0])) {
+				try {
+					int nVars = Integer.parseInt(elements[2]);
+					return translateCommandFunction(elements[1], nVars);
+				} catch (NumberFormatException e) {
+					throw new SyntaxException("SyntaxException at command: " + vmCommand);
+				}
+
 			} else {
 				throw new SyntaxException("SyntaxException at command: " + vmCommand);
 			}
@@ -108,6 +124,32 @@ public class CodeGenerator {
 		asms.add("D=M");
 		asms.add("@" + label);
 		asms.add("D;JNE");
+
+		return asms;
+	}
+
+	private List<String> translateCommandFunction(String function, int nVars) {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// function " + function + " " + nVars);
+
+		for (int i = 0; i < nVars; i++) {
+			asms.add("@SP");
+			asms.add("A=M");
+			asms.add("M=0");
+			asms.add("@SP");
+			asms.add("M=M+1");
+		}
+
+		return asms;
+	}
+
+	private List<String> translateCommandCall(String function, int nArgs) {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// return");
+
+
 
 		return asms;
 	}
