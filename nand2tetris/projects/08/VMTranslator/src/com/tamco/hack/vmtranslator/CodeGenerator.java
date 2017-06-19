@@ -35,10 +35,14 @@ public class CodeGenerator {
 		String[] elements = vmCommand.split(SPACE);
 
 		if (elements.length == 1) {
-			return translateArithmeticLogicCommand(elements);
+			if ("return".equals(elements[0])) {
+				return translateCommandReturn();
+			} else {
+				return translateArithmeticLogicCommand(elements);
+			}
 
 		} else if (elements.length == 2) {
-			return Collections.emptyList();
+			return translateProgramFlowCommand(elements);
 
 		} else if (elements.length == 3) {
 			if ("push".equals(elements[0]) || "pop".equals(elements[0])) {
@@ -51,6 +55,71 @@ public class CodeGenerator {
 		} else {
 			throw new SyntaxException("SyntaxException at command: " + vmCommand);
 		}
+	}
+
+	private List<String> translateProgramFlowCommand(String[] elements) throws SyntaxException {
+		String command = elements[0];
+		String label = elements[1];
+		String vmCommand = command + " " + label;
+
+		if ("label".equals(command)) {
+			return translateCommandLabel(label);
+
+		} else if ("goto".equals(command)) {
+			return translateCommandGoto(label);
+
+		} else if ("if-goto".equals(command)) {
+			return translateCommandIfGoto(label);
+
+		} else {
+			throw new SyntaxException("SyntaxException at command: " + vmCommand);
+		}
+	}
+
+	private List<String> translateCommandLabel(String label) {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// label " + label);
+		asms.add("(" + label + ")");
+
+		return asms;
+	}
+
+	private List<String> translateCommandGoto(String label) {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// goto " + label);
+
+		asms.add("@" + label);
+		asms.add("0;JMP");
+
+		return asms;
+	}
+
+	private List<String> translateCommandIfGoto(String label) {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// if-goto " + label);
+
+		// pop the top most value
+		asms.add("@SP");
+		asms.add("AM=M-1");
+		// check condition and jump
+		asms.add("D=M");
+		asms.add("@" + label);
+		asms.add("D;JNE");
+
+		return asms;
+	}
+
+	private List<String> translateCommandReturn() {
+		List<String> asms = new ArrayList<>();
+		// add comment
+		asms.add("// return");
+
+
+
+		return asms;
 	}
 
 	private List<String> translateMemoryAccessCommand(String[] elements) throws SyntaxException {

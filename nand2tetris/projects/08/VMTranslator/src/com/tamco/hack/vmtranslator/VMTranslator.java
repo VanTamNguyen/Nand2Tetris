@@ -12,11 +12,6 @@ import java.util.List;
 public class VMTranslator {
 
 	public static void main(String[] args) {
-//		if (args.length < 1) {
-//			System.out.println("\nPlease specify file path to compile\n");
-//			return;
-//		}
-
 		File sourceCode = new File("../MemoryAccess");
 		translateSrc(sourceCode, "src");
 	}
