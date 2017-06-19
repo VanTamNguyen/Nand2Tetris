@@ -133,6 +133,7 @@ public class CodeGenerator {
 		// add comment
 		asms.add("// function " + function + " " + nVars);
 
+		asms.add("(" + function + ")");
 		for (int i = 0; i < nVars; i++) {
 			asms.add("@SP");
 			asms.add("A=M");
@@ -147,9 +148,51 @@ public class CodeGenerator {
 	private List<String> translateCommandCall(String function, int nArgs) {
 		List<String> asms = new ArrayList<>();
 		// add comment
-		asms.add("// return");
+		asms.add("// call " + function + " " + nArgs);
 
+		// 1. push return address
+		asms.add("@" + "return-address-to-" + function);
+		asms.add("D=A");
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+		asms.add("@SP");
+		asms.add("M=M+1");
 
+		// 2. push LCL
+		asms.addAll(translatePushLocal(0));
+
+		// 3. push ARG
+		asms.addAll(translatePushArgument(0));
+
+		// 4. push THIS
+		asms.addAll(translatePushThis(0));
+
+		// 5. push THAT
+		asms.addAll(translatePushThat(0));
+
+		// 6. calculate ARG for called function
+		asms.add("@5");
+		asms.add("D=A");
+		asms.add("@" + nArgs);
+		asms.add("D=D+A");
+		asms.add("@SP");
+		asms.add("D=M-D");
+		asms.add("@ARG");
+		asms.add("M=D");
+
+		// 7. calculate LCL for called function
+		asms.add("@SP");
+		asms.add("D=M");
+		asms.add("@LCL");
+		asms.add("M=D");
+
+		// 8. go to function
+		asms.add("@" + function);
+		asms.add("0;JMP");
+
+		// 9. mark return address
+		asms.add("(return-address-to-" + function + ")");
 
 		return asms;
 	}
