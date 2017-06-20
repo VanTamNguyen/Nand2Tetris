@@ -19,6 +19,8 @@ public class CodeGenerator {
 
 	private int ltCount = 0;
 
+	private int callCount = 0;
+
 	public CodeGenerator(String vmName) { this.vmName = vmName; }
 
 	public List<String> generateAsmCode(List<String> vmCommands) throws SyntaxException {
@@ -150,8 +152,11 @@ public class CodeGenerator {
 		// add comment
 		asms.add("// call " + function + " " + nArgs);
 
+		String returnAddress = vmName + "-return-address-" + callCount;
+		callCount++;
+
 		// 1. push return address
-		asms.add("@" + "return-address-to-" + function);
+		asms.add("@" + returnAddress);
 		asms.add("D=A");
 		asms.add("@SP");
 		asms.add("A=M");
@@ -160,16 +165,40 @@ public class CodeGenerator {
 		asms.add("M=M+1");
 
 		// 2. push LCL
-		asms.addAll(translatePushLocal(0));
+		asms.add("@LCL");
+		asms.add("D=M");
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+		asms.add("@SP");
+		asms.add("M=M+1");
 
 		// 3. push ARG
-		asms.addAll(translatePushArgument(0));
+		asms.add("@ARG");
+		asms.add("D=M");
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+		asms.add("@SP");
+		asms.add("M=M+1");
 
 		// 4. push THIS
-		asms.addAll(translatePushThis(0));
+		asms.add("@THIS");
+		asms.add("D=M");
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+		asms.add("@SP");
+		asms.add("M=M+1");
 
 		// 5. push THAT
-		asms.addAll(translatePushThat(0));
+		asms.add("@THAT");
+		asms.add("D=M");
+		asms.add("@SP");
+		asms.add("A=M");
+		asms.add("M=D");
+		asms.add("@SP");
+		asms.add("M=M+1");
 
 		// 6. calculate ARG for called function
 		asms.add("@5");
@@ -192,7 +221,7 @@ public class CodeGenerator {
 		asms.add("0;JMP");
 
 		// 9. mark return address
-		asms.add("(return-address-to-" + function + ")");
+		asms.add("(" + returnAddress + ")");
 
 		return asms;
 	}
