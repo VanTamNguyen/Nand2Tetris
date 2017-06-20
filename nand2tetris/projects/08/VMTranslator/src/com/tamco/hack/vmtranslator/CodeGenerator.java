@@ -231,7 +231,73 @@ public class CodeGenerator {
 		// add comment
 		asms.add("// return");
 
+		// 1. R13 <--- FRAME = LCL
+		asms.add("@LCL");
+		asms.add("D=M");
+		asms.add("@R13");
+		asms.add("M=D");
 
+		// 2. R14 <--- RET = *(FRAME - 5)
+		asms.add("@R13");
+		asms.add("D=M");
+		asms.add("@5");
+		asms.add("A=D-A");
+		asms.add("D=M");
+		asms.add("@R14");
+		asms.add("M=D");
+
+		// 3. *ARG = pop()
+		asms.add("@SP");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@ARG");
+		asms.add("A=M");
+		asms.add("M=D");
+
+		// 4. SP = ARG + 1
+		asms.add("@ARG");
+		asms.add("D=M+1");
+		asms.add("@SP");
+		asms.add("M=D");
+
+		// 5. THAT = *(FRAME - 1)
+		asms.add("@R13");
+		asms.add("A=M-1");
+		asms.add("D=M");
+		asms.add("@THAT");
+		asms.add("M=D");
+
+		// 6. THIS = *(FRAME - 2)
+		asms.add("@R13");
+		asms.add("D=M");
+		asms.add("@2");
+		asms.add("A=D-A");
+		asms.add("D=M");
+		asms.add("@THIS");
+		asms.add("M=D");
+
+		// 7. ARG = *(FRAME - 3)
+		asms.add("@R13");
+		asms.add("D=M");
+		asms.add("@3");
+		asms.add("A=D-A");
+		asms.add("D=M");
+		asms.add("@ARG");
+		asms.add("M=D");
+
+		// 8. LCL = *(FRAME - 4)
+		asms.add("@R13");
+		asms.add("D=M");
+		asms.add("@4");
+		asms.add("A=D-A");
+		asms.add("D=M");
+		asms.add("@LCL");
+		asms.add("M=D");
+
+		// 9. goto RET
+		asms.add("@R14");
+		asms.add("A=M");
+		asms.add("0;JMP");
 
 		return asms;
 	}
