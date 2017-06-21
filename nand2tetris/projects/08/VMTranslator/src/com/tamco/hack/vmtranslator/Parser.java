@@ -37,7 +37,7 @@ public class Parser {
 			return line.substring(0, index);
 		}
 
-		return line;
+		return line.trim();
 	}
 
 	private String removeSpaces(String line) {
