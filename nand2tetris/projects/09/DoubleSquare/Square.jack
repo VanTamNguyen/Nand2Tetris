@@ -1,0 +1,66 @@
+class Square {
+	field int x;
+	field int y;
+	field int size;
+	
+	constructor Square new(int ax, int ay, int asize) {
+		let x = ax;
+		let y = ay;
+		let size = asize;
+		do draw();
+		return this;
+	}
+	
+	method void draw() {
+		do Screen.setColor(true);
+		do Screen.drawRectangle(x, y, x + size, y + size);
+		return;
+	}
+	
+	method void erase() {
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x, y, x + size, y + size);
+		return;
+	}
+
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method void moveLeft() {
+		if (x - 2 > 0) {
+			do erase();
+			let x = x - 2;
+			do draw();
+		}
+		return;
+	}
+	
+	method void moveRight() {
+		if (x + size + 2 < 512) {
+			do erase();
+			let x = x + 2;
+			do draw();
+		}
+		return;
+	}
+	
+	method void moveUp() {
+		if (y - 2 > 0) {
+			do erase();
+			let y = y - 2;
+			do draw();
+		}
+		return;
+	}
+	
+	method void moveDown() {
+		if (y + size + 2 < 256) {
+			do erase();
+			let y = y + 2;
+			do draw();
+		}
+		return;
+	}
+}

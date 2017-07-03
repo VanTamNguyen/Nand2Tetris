@@ -1,0 +1,51 @@
+class DoubleSquareGame {
+	field Square square1, square2;
+	field int direction;
+
+	constructor DoubleSquareGame new() {
+		let square1 = Square.new(226, 108, 20);
+		let square2 = Square.new(266, 108, 20);
+		let direction = 0;
+		return this;
+	}
+	
+	method void dispose() {
+      do square1.dispose();
+      do square2.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+   
+   method void moveSquare() {
+      if (direction = 1) { do square1.moveUp(); do square2.moveDown(); }
+      if (direction = 2) { do square1.moveDown(); do square2.moveUp(); }
+      if (direction = 3) { do square1.moveLeft(); do square2.moveRight(); }
+      if (direction = 4) { do square1.moveRight(); do square2.moveLeft();	 }
+      do Sys.wait(5);  // delays the next movement
+      return;
+   }
+   
+   method void run() {
+      var char key;  // the key currently pressed by the user
+      
+      while (true) {
+         // waits for a key to be pressed
+         while (key = 0) {
+            let key = Keyboard.keyPressed();
+            do moveSquare();
+         }
+         
+         if (key = 131) { let direction = 1; }   // up arrow
+         if (key = 133) { let direction = 2; }   // down arrow
+         if (key = 130) { let direction = 3; }   // left arrow
+         if (key = 132) { let direction = 4; }   // right arrow
+
+         // waits for the key to be released
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do moveSquare();
+         }
+     } // while
+     return;
+   }
+}
