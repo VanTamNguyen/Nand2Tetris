@@ -34,31 +34,44 @@ public class JackTokenizer {
 
 		// Remove all comments
 		String code = sourceContent.toString().replaceAll("/\\*.*\\*/", " ");
-		StringBuilder lexical = new StringBuilder("");
+		StringBuilder lexicalBuilder = new StringBuilder("");
 		boolean startStringConstant = false;
 
 		for (char character : code.toCharArray()) {
+			if (startStringConstant && character == '"') {
+				startStringConstant = false;
+				tokens.add(new Lexical(Lexical.Type.stringConstant, lexicalBuilder.toString()));
+				lexicalBuilder = new StringBuilder("");
+				continue;
 
+			} else if (!startStringConstant && character == '"') {
+				startStringConstant = true;
+				continue;
+
+			} else if (startStringConstant && character != '"') {
+				lexicalBuilder.append(String.valueOf(character));
+				continue;
+			}
 
 			if (isSpace(character)) {
-				if (!lexical.toString().isEmpty()) {
-					tokens.add(Lexical.fromString(lexical.toString()));
+				if (!lexicalBuilder.toString().isEmpty()) {
+					tokens.add(Lexical.fromString(lexicalBuilder.toString()));
 				}
 
-				lexical = new StringBuilder("");
+				lexicalBuilder = new StringBuilder("");
 
 			} else if (isSymbol(character)) {
-				if (!lexical.toString().isEmpty()) {
-					tokens.add(Lexical.fromString(lexical.toString()));
+				if (!lexicalBuilder.toString().isEmpty()) {
+					tokens.add(Lexical.fromString(lexicalBuilder.toString()));
 				}
 
 				Lexical symbol = new Lexical(Lexical.Type.symbol, String.valueOf(character));
 				tokens.add(symbol);
 
-				lexical = new StringBuilder("");
+				lexicalBuilder = new StringBuilder("");
 
 			} else {
-				lexical.append(String.valueOf(character));
+				lexicalBuilder.append(String.valueOf(character));
 			}
 		}
 
