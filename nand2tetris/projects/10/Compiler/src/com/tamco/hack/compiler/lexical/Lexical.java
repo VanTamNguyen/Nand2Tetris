@@ -51,4 +51,18 @@ public class Lexical {
 	public void setLecical(String lecical) {
 		this.lecical = lecical;
 	}
+
+	public static Lexical fromString(String token) {
+		if (keywords.contains(token)) {
+			return new Lexical(Type.keyword, token);
+		}
+
+		try {
+			Integer.parseInt(token);
+			return new Lexical(Type.integerConstant, token);
+
+		} catch (NumberFormatException e) {
+			return new Lexical(Type.identifier, token);
+		}
+	}
 }

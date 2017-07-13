@@ -22,6 +22,8 @@ public class JackTokenizer {
 	}
 
 	public List<Lexical> tokenize() throws IOException {
+		List<Lexical> tokens = new ArrayList<>();
+
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(sourceCode));
 		String line = "";
 		StringBuilder sourceContent = new StringBuilder();
@@ -32,8 +34,34 @@ public class JackTokenizer {
 
 		// Remove all comments
 		String code = sourceContent.toString().replaceAll("/\\*.*\\*/", " ");
+		StringBuilder lexical = new StringBuilder("");
+		boolean startStringConstant = false;
 
-		List<Lexical> tokens = new ArrayList<>();
+		for (char character : code.toCharArray()) {
+
+
+			if (isSpace(character)) {
+				if (!lexical.toString().isEmpty()) {
+					tokens.add(Lexical.fromString(lexical.toString()));
+				}
+
+				lexical = new StringBuilder("");
+
+			} else if (isSymbol(character)) {
+				if (!lexical.toString().isEmpty()) {
+					tokens.add(Lexical.fromString(lexical.toString()));
+				}
+
+				Lexical symbol = new Lexical(Lexical.Type.symbol, String.valueOf(character));
+				tokens.add(symbol);
+
+				lexical = new StringBuilder("");
+
+			} else {
+				lexical.append(String.valueOf(character));
+			}
+		}
+
 		return tokens;
 	}
 
@@ -44,5 +72,17 @@ public class JackTokenizer {
 		}
 
 		return line;
+	}
+
+	private boolean isSpace(char character) {
+		if (character == ' ' || character == '\t' || character == '\n') {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean isSymbol(char character) {
+		return Lexical.symbols.contains(String.valueOf(character));
 	}
 }
