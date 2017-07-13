@@ -34,6 +34,8 @@ public class JackTokenizer {
 
 		// Remove all comments
 		String code = sourceContent.toString().replaceAll("/\\*.*\\*/", " ");
+		code = code.replaceAll("(?s)/\\*.*\\*/", " ");
+
 		StringBuilder lexicalBuilder = new StringBuilder("");
 		boolean startStringConstant = false;
 

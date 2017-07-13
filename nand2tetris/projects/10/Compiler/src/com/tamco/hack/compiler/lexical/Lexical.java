@@ -52,6 +52,11 @@ public class Lexical {
 		this.lecical = lecical;
 	}
 
+	public String toString() {
+		String lex = lecical.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		return "<" + type.name() + "> " + lex + " </" + type.name() + ">";
+	}
+
 	public static Lexical fromString(String token) {
 		if (keywords.contains(token)) {
 			return new Lexical(Type.keyword, token);
