@@ -48,4 +48,11 @@ public class JackAnalyzer {
 			}
 		}
 	}
+
+	private static void parseSource(File sourceFolder) {
+		File[] sourceFiles = sourceFolder.listFiles();
+		for (File sourceFile : sourceFiles) {
+
+		}
+	}
 }
