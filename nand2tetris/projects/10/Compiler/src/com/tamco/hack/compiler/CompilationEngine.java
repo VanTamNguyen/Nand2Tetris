@@ -65,7 +65,7 @@ public class CompilationEngine {
 	private void compileClassVarDec() {
 		output.add("<classVarDec>");
 
-		// static || field
+		// 'static' | 'field'
 		eat(currentToken);
 
 		// type
@@ -94,7 +94,43 @@ public class CompilationEngine {
 		nextToken();
 	}
 
+	// ( 'constructor' | 'function' | 'method' ) ( 'void' | type ) subroutineName '(' parameterList ')' subroutineBody
 	private void compileSubroutineDec() {
+		output.add("<subroutineDec>");
+
+		// 'constructor' | 'function' | 'method'
+		eat(currentToken);
+
+		// 'void' | type
+		nextToken();
+		eat(currentToken);
+
+		// subroutineName
+		nextToken();
+		eat(currentToken);
+
+		// '('
+		nextToken();
+		eat(currentToken);
+
+		// parameterList
+		compileParameterList();
+
+		// ')'
+		eat(currentToken);
+
+		// subroutineBody
+		compileSubroutineBody();
+
+		output.add("</subroutineDec>");
+		nextToken();
+	}
+
+	private void compileParameterList() {
+
+	}
+
+	private void compileSubroutineBody() {
 
 	}
 
