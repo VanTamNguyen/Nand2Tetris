@@ -11,6 +11,8 @@ public class CompilationEngine {
 
 	private List<Lexical> tokens;
 
+	private Lexical currentToken;
+
 	private int count = 0;
 
 	private List<String> output;
@@ -20,40 +22,76 @@ public class CompilationEngine {
 		this.output = output;
 	}
 
-	public void compile() {
-		Lexical token = nextToken();
-		if (token.getLecical() == "class") {
-			// class
-			eat(token);
+	// 'class' className '{' classVarDec* subroutineDec* '}'
+	public void compileClass() {
+		output.add("<class>");
 
-			// className
-			token = nextToken();
-			eat(token);
+		nextToken();
+		// class
+		eat(currentToken);
 
-			// symbol {
-			token = nextToken();
-			eat(token);
+		// className
+		nextToken();
+		eat(currentToken);
 
-			compileClass();
+		// symbol {
+		nextToken();
+		eat(currentToken);
 
-			// symbol }
-			token = nextToken();
-			eat(token);
-		}
-	}
-
-	private void compileClass() {
-		Lexical token = nextToken();
-		while (token.getLecical() == "static" || token.getLecical() == "field") {
-			compileClassVarDec();
-			token = nextToken();
+		nextToken();
+		while (isClassSubroutineDec(currentToken) || isClassVarDec(currentToken)) {
+			if (isClassVarDec(currentToken)) {
+				compileClassVarDec();
+			} else if (isClassSubroutineDec(currentToken)) {
+				compileSubroutineDec();
+			}
 		}
 
-		
+		// symbol }
+		eat(currentToken);
+
+		output.add("</class>");
 	}
 
+	private boolean isClassVarDec(Lexical token) {
+		return token.getLecical() == "static" || token.getLecical() == "field";
+	}
+
+	private boolean isClassSubroutineDec(Lexical token) {
+		return token.getLecical() == "constructor" || token.getLecical() == "function" || token.getLecical() == "method";
+	}
+
+	// ( 'static' | 'field' ) type varName ( ',' varName)* ';'
 	private void compileClassVarDec() {
+		output.add("<classVarDec>");
 
+		// static || field
+		eat(currentToken);
+
+		// type
+		nextToken();
+		eat(currentToken);
+
+		// varName
+		nextToken();
+		eat(currentToken);
+
+		nextToken();
+		while (currentToken.getLecical() == ",") {
+			// ,
+			eat(currentToken);
+
+			// varName
+			nextToken();
+			eat(currentToken);
+			nextToken();
+		}
+
+		// ;
+		eat(currentToken);
+
+		output.add("</classVarDec>");
+		nextToken();
 	}
 
 	private void compileSubroutineDec() {
@@ -64,9 +102,8 @@ public class CompilationEngine {
 		output.add(token.toString());
 	}
 
-	private Lexical nextToken() {
-		Lexical lexical = tokens.get(count);
+	private void nextToken() {
+		currentToken = tokens.get(count);
 		count++;
-		return lexical;
 	}
 }
