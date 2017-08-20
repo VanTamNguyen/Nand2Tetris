@@ -177,6 +177,14 @@ public class CompilationEngine {
 		return token.getLecical() == "var";
 	}
 
+	private boolean isStatement(Lexical token) {
+		return token.getLecical() == "let" ||
+				token.getLecical() == "if" ||
+				token.getLecical() == "while" ||
+				token.getLecical() == "do" ||
+				token.getLecical() == "return";
+	}
+
 	// 'var' type varName ( ',' varName)* ';'
 	private void compileVarDec() {
 		output.add("<varDec>");
@@ -207,6 +215,7 @@ public class CompilationEngine {
 
 		// ;
 		eat(currentToken);
+		nextToken();
 
 		output.add("</varDec>");
 	}
