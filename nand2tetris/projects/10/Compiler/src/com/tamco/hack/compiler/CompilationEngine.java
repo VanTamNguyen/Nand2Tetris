@@ -126,8 +126,32 @@ public class CompilationEngine {
 		nextToken();
 	}
 
+	// ((type varName) ( ',' type varName)*)?
 	private void compileParameterList() {
+		output.add("<parameterList>");
 
+		nextToken();
+		if (currentToken.getLecical() != ")") {
+			// type
+			eat(currentToken);
+			// varName
+			nextToken();
+			eat(currentToken);
+
+			nextToken();
+			while (currentToken.getLecical() == ",") {
+				// ,
+				eat(currentToken);
+
+				// type
+				nextToken();
+				eat(currentToken);
+
+				nextToken();
+			}
+		}
+
+		output.add("</parameterList>");
 	}
 
 	private void compileSubroutineBody() {
