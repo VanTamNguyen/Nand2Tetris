@@ -154,8 +154,67 @@ public class CompilationEngine {
 		output.add("</parameterList>");
 	}
 
+	// '{' varDec* statements '}'
 	private void compileSubroutineBody() {
+		output.add("<subroutineBody>");
+		// {
+		nextToken();
+		eat(currentToken);
 
+		// varDec*
+		nextToken();
+		while (isVarDec(currentToken)) {
+			compileVarDec();
+		}
+
+		// statements
+		compileStatements();
+
+		output.add("</subroutineBody>");
+	}
+
+	private boolean isVarDec(Lexical token) {
+		return token.getLecical() == "var";
+	}
+
+	// 'var' type varName ( ',' varName)* ';'
+	private void compileVarDec() {
+		output.add("<varDec>");
+
+		// var
+		eat(currentToken);
+
+		// type
+		nextToken();
+		eat(currentToken);
+
+		// varName
+		nextToken();
+		eat(currentToken);
+
+		// (',' varName)*
+		nextToken();
+		while (currentToken.getLecical() == ",") {
+			// ,
+			eat(currentToken);
+
+			// varName
+			nextToken();
+			eat(currentToken);
+
+			nextToken();
+		}
+
+		// ;
+		eat(currentToken);
+
+		output.add("</varDec>");
+	}
+
+	// statement*
+	private void compileStatements() {
+		output.add("<statements>");
+		output.add("</statements>");
 	}
 
 	private void eat(Lexical token) {
