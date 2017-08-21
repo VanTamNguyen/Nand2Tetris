@@ -223,7 +223,50 @@ public class CompilationEngine {
 	// statement*
 	private void compileStatements() {
 		output.add("<statements>");
+
+		while (isStatement(currentToken)) {
+			compileStatement();
+		}
+
 		output.add("</statements>");
+	}
+
+	private void compileStatement() {
+		if (currentToken.getLecical() == "let") {
+			compileLetStatement();
+
+		} else if (currentToken.getLecical() == "if") {
+			compileIfStatement();
+
+		} else if (currentToken.getLecical() == "while") {
+			compileWhileStatement();
+
+		} else if (currentToken.getLecical() == "do") {
+			compileDoStatement();
+
+		} else if (currentToken.getLecical() == "return") {
+			compileReturnStatement();
+		}
+	}
+
+	private void compileLetStatement() {
+
+	}
+
+	private void compileWhileStatement() {
+
+	}
+
+	private void compileIfStatement() {
+
+	}
+
+	private void compileDoStatement() {
+
+	}
+
+	private void compileReturnStatement() {
+
 	}
 
 	private void eat(Lexical token) {
