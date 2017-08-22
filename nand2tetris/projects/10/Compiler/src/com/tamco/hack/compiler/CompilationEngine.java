@@ -26,15 +26,15 @@ public class CompilationEngine {
 	public void compileClass() {
 		output.add("<class>");
 
+		// 'class'
 		nextToken();
-		// class
 		eat(currentToken);
 
 		// className
 		nextToken();
 		eat(currentToken);
 
-		// symbol {
+		// '{'
 		nextToken();
 		eat(currentToken);
 
@@ -47,7 +47,7 @@ public class CompilationEngine {
 			}
 		}
 
-		// symbol }
+		// '}'
 		eat(currentToken);
 
 		output.add("</class>");
@@ -78,7 +78,7 @@ public class CompilationEngine {
 
 		nextToken();
 		while (currentToken.getLecical() == ",") {
-			// ,
+			// ','
 			eat(currentToken);
 
 			// varName
@@ -87,7 +87,7 @@ public class CompilationEngine {
 			nextToken();
 		}
 
-		// ;
+		// ';'
 		eat(currentToken);
 
 		output.add("</classVarDec>");
@@ -249,8 +249,40 @@ public class CompilationEngine {
 		}
 	}
 
+	// 'let' varName ('[' expression ']')? '=' expression ';'
 	private void compileLetStatement() {
-
+		output.add("<letStatement>");
+		
+		// 'let'
+		eat(currentToken);
+		
+		// varName
+		nextToken();
+		eat(currentToken);
+		
+		nextToken();
+		if (currentToken.getLetLecical() == "[") {
+			// '['
+			eat(currentToken);
+			
+			// expression
+			compileExpression();
+			
+			// ']'
+			eat(currentToken);
+			nextToken();
+		}
+		
+		// '='
+		eat(currentToken);
+		
+		// expression
+		compileExpression();
+		
+		// ';'
+		eat(currentToken);
+		
+		output.add("</letStatement>");
 	}
 
 	private void compileWhileStatement() {
