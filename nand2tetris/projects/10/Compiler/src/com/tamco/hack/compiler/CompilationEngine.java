@@ -13,7 +13,7 @@ public class CompilationEngine {
 
 	private Lexical currentToken;
 
-	private int count = 0;
+	private int count = -1;
 
 	private List<String> output;
 
@@ -261,7 +261,7 @@ public class CompilationEngine {
 		eat(currentToken);
 		
 		nextToken();
-		if (currentToken.getLetLecical() == "[") {
+		if (currentToken.getLecical() == "[") {
 			// '['
 			eat(currentToken);
 			
@@ -301,12 +301,25 @@ public class CompilationEngine {
 
 	}
 
+	private void compileExpression() {
+
+	}
+
+	private void compileTerm() {
+
+	}
+
 	private void eat(Lexical token) {
 		output.add(token.toString());
 	}
 
 	private void nextToken() {
-		currentToken = tokens.get(count);
 		count++;
+		currentToken = tokens.get(count);
+	}
+
+	private void previousToken() {
+		count--;
+		currentToken = tokens.get(count);
 	}
 }
