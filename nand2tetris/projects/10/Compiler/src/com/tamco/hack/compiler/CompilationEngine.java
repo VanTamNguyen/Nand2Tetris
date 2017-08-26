@@ -289,8 +289,55 @@ public class CompilationEngine {
 
 	}
 
+	// 'if' '(' expression ')' '{' statements '}' ( 'else' '{' statements '}' )?
 	private void compileIfStatement() {
+		output.add("<ifStatement>");
 
+		// 'if'
+		eat(currentToken);
+
+		// '('
+		nextToken();
+		eat(currentToken);
+
+		// expression
+		compileExpression();
+
+		// ')'
+		nextToken();
+		eat(currentToken);
+
+		// '{'
+		nextToken();
+		eat(currentToken);
+
+		// statements
+		nextToken();
+		compileStatements();
+
+		// '}'
+		nextToken();
+		eat(currentToken);
+
+		nextToken();
+		if (currentToken.getLecical() == "else") {
+			// 'else'
+			eat(currentToken);
+
+			// '{'
+			nextToken();
+			eat(currentToken);
+
+			// statements
+			nextToken();
+			compileStatements();
+
+			// '}'
+			nextToken();
+			eat(currentToken);
+		}
+
+		output.add("</ifStatement>");
 	}
 
 	private void compileDoStatement() {
