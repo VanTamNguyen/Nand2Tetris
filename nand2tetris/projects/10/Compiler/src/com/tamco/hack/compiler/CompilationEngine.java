@@ -70,6 +70,33 @@ public class CompilationEngine {
 	private void compileClassVarDec() {
 		output.add("<classVarDec>");
 
+		// 'static' | 'field'
+		goNext();
+		eat(currentToken);
+
+		// type
+		goNext();
+		eat(currentToken);
+
+		// varName
+		goNext();
+		eat(currentToken);
+
+		goNext();
+		while (currentToken.getLecical() == ",") {
+			// ','
+			eat(currentToken);
+
+			// varName
+			goNext();
+			eat(currentToken);
+
+			goNext();
+		}
+
+		// ';'
+		eat(currentToken);
+
 		output.add("</classVarDec>");
 	}
 
