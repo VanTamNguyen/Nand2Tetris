@@ -13,6 +13,10 @@ public class CompilationEngine {
 
 	private List<String> output;
 
+	private int count = -1;
+
+	private Lexical currentToken;
+
 	public CompilationEngine(List<Lexical> tokens, List<String> output) {
 		this.tokens = tokens;
 		this.output = output;
@@ -21,6 +25,35 @@ public class CompilationEngine {
 	// 'class' className '{' classVarDec* subroutineDec* '}'
 	public void compileClass() {
 		output.add("<class>");
+
+		// 'class'
+		goNext();
+		eat(currentToken);
+
+		// className
+		goNext();
+		eat(currentToken);
+
+		// '{'
+		goNext();
+		eat(currentToken);
+
+		goNext();
+		while (isClassVarDec(currentToken) || isClassSubroutineDec(currentToken)) {
+			if (isClassVarDec(currentToken)) {
+				goBack();
+				compileClassVarDec();
+
+			} else if (isClassSubroutineDec(currentToken)) {
+				goBack();
+				compileSubroutineDec();
+			}
+
+			goNext();
+		}
+
+		// '}'
+		eat(currentToken);
 
 		output.add("</class>");
 	}
@@ -127,5 +160,15 @@ public class CompilationEngine {
 
 	private void eat(Lexical token) {
 		output.add(token.toString());
+	}
+
+	private void goNext() {
+		count++;
+		currentToken = tokens.get(count);
+	}
+
+	private void goBack() {
+		count--;
+		currentToken = tokens.get(count);
 	}
 }
