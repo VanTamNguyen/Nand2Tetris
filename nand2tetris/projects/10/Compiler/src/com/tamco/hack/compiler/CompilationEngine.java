@@ -104,6 +104,32 @@ public class CompilationEngine {
 	private void compileSubroutineDec() {
 		output.add("<subroutineDec>");
 
+		// 'constructor' | 'function' | 'method'
+		goNext();
+		eat(currentToken);
+
+		// 'void' | type
+		goNext();
+		eat(currentToken);
+
+		// subroutineName
+		goNext();
+		eat(currentToken);
+
+		// '('
+		goNext();
+		eat(currentToken);
+
+		// parameterList
+		compileParameterList();
+
+		// ')'
+		goNext();
+		eat(currentToken);
+
+		// subroutineBody
+		compileSubroutineBody();
+
 		output.add("</subroutineDec>");
 	}
 
