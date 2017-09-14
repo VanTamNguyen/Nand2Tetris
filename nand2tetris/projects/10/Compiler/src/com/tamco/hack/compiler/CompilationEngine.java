@@ -490,6 +490,13 @@ public class CompilationEngine {
 		return token.getLecical() == "-" || token.getLecical() == "~";
 	}
 
+	private boolean isKeywordConstant(Lexical token) {
+		return token.getLecical() == "true" ||
+				token.getLecical() == "false" ||
+				token.getLecical() == "null" ||
+				token.getLecical() == "this";
+	}
+
 	private void eat(Lexical token) {
 		output.add(token.toString());
 	}
