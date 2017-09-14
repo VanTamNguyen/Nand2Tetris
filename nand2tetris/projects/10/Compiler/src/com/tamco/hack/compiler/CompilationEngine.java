@@ -245,6 +245,15 @@ public class CompilationEngine {
 	private void compileStatements() {
 		output.add("<statements>");
 
+		goNext();
+		while (isStatement(currentToken)) {
+			goBack();
+			compileStatement();
+			goNext();
+		}
+
+		goBack();
+
 		output.add("</statements>");
 	}
 
