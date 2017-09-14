@@ -258,7 +258,28 @@ public class CompilationEngine {
 	}
 
 	private void compileStatement() {
+		goNext();
 
+		if (currentToken.getLecical() == "let") {
+			goBack();
+			compileLetStatement();
+
+		} else if (currentToken.getLecical() == "if") {
+			goBack();
+			compileIfStatement();
+
+		} else if (currentToken.getLecical() == "while") {
+			goBack();
+			compileWhileStatement();
+
+		} else if (currentToken.getLecical() == "do") {
+			goBack();
+			compileDoStatement();
+
+		} else if (currentToken.getLecical() == "return") {
+			goBack();
+			compileReturnStatement();
+		}
 	}
 
 	// 'let' varName ('[' expression ']')? '=' expression ';'
@@ -280,11 +301,15 @@ public class CompilationEngine {
 	}
 
 	private void compileDoStatement() {
+		output.add("<doStatement>");
 
+		output.add("</doStatement>");
 	}
 
 	private void compileReturnStatement() {
+		output.add("<returnStatement>");
 
+		output.add("</returnStatement>");
 	}
 
 	private void compileExpression() {
