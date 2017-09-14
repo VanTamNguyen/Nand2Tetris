@@ -172,6 +172,26 @@ public class CompilationEngine {
 	private void compileSubroutineBody() {
 		output.add("<subroutineBody>");
 
+		// '{'
+		goNext();
+		eat(currentToken);
+
+		// varDec*
+		goNext();
+		while (isVarDec(currentToken)) {
+			goBack();
+			compileVarDec();
+			goNext();
+		}
+
+		// statements
+		goBack();
+		compileStatements();
+
+		// '}'
+		goNext();
+		eat(currentToken);
+
 		output.add("</subroutineBody>");
 	}
 
@@ -190,6 +210,33 @@ public class CompilationEngine {
 	// 'var' type varName ( ',' varName)* ';'
 	private void compileVarDec() {
 		output.add("<varDec>");
+
+		// 'var'
+		goNext();
+		eat(currentToken);
+
+		// type
+		goNext();
+		eat(currentToken);
+
+		// varName
+		goNext();
+		eat(currentToken);
+
+		goNext();
+		while (currentToken.getLecical() == ",") {
+			// ','
+			eat(currentToken);
+
+			// varName
+			goNext();
+			eat(currentToken);
+
+			goNext();
+		}
+
+		// ';'
+		eat(currentToken);
 
 		output.add("</varDec>");
 	}
