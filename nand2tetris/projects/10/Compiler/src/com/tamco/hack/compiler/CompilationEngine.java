@@ -370,14 +370,38 @@ public class CompilationEngine {
 			goBack();
 		}
 
-
-
 		output.add("</ifStatement>");
 	}
 
 	// 'while' '(' expression ')' '{' statements '}'
 	private void compileWhileStatement() {
 		output.add("<whileStatement>");
+
+		// 'while'
+		goNext();
+		eat(currentToken);
+
+		// '('
+		goNext();
+		eat(currentToken);
+
+		// expression
+		compileExpression();
+
+		// ')'
+		goNext();
+		eat(currentToken);
+
+		// '{'
+		goNext();
+		eat(currentToken);
+
+		// statements
+		compileStatements();
+
+		// '}'
+		goNext();
+		eat(currentToken);
 
 		output.add("</whileStatement>");
 	}
