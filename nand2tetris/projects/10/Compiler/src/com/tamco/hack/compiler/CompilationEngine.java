@@ -324,12 +324,40 @@ public class CompilationEngine {
 	private void compileIfStatement() {
 		output.add("<ifStatement>");
 
+		// 'if'
+		goNext();
+		eat(currentToken);
+
+		// '('
+		goNext();
+		eat(currentToken);
+
+		// expression
+		compileExpression();
+
+		// ')'
+		goNext();
+		eat(currentToken);
+
+		// '{'
+		goNext();
+		eat(currentToken);
+
+		// statements
+		compileStatements();
+
+		// '}'
+		goNext();
+		eat(currentToken);
+
 		output.add("</ifStatement>");
 	}
 
 	// 'while' '(' expression ')' '{' statements '}'
 	private void compileWhileStatement() {
+		output.add("<whileStatement>");
 
+		output.add("</whileStatement>");
 	}
 
 	// 'do' subroutineCall ';'
