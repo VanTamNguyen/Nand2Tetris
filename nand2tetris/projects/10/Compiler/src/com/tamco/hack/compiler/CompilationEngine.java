@@ -410,6 +410,17 @@ public class CompilationEngine {
 	private void compileDoStatement() {
 		output.add("<doStatement>");
 
+		// 'do'
+		goNext();
+		eat(currentToken);
+
+		// subroutineCall
+		compileSubroutineCall();
+
+		// ';'
+		goNext();
+		eat(currentToken);
+
 		output.add("</doStatement>");
 	}
 
