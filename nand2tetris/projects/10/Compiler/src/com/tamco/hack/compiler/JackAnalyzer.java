@@ -33,13 +33,12 @@ public class JackAnalyzer {
 				JackTokenizer tokenizer = new JackTokenizer(sourceFile);
 				List<Lexical> tokens = tokenizer.tokenize();
 
-				StringBuilder output = new StringBuilder("<tokens>\n");
+				StringBuilder output = new StringBuilder("");
 				for (Lexical token : tokens) {
 					output.append(token.toString()).append("\n");
 				}
-				output.append("</tokens>");
 
-				String outputFileName = sourceFile.getName() + ".Token.xml";
+				String outputFileName = sourceFile.getName() + ".xml";
 				File outputFile = new File(sourceFile.getParent(), outputFileName);
 				FileWriter fileWriter = new FileWriter(outputFile);
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

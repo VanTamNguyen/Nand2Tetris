@@ -286,6 +286,37 @@ public class CompilationEngine {
 	private void compileLetStatement() {
 		output.add("<letStatement>");
 
+		// 'let'
+		goNext();
+		eat(currentToken);
+
+		// varName
+		goNext();
+		eat(currentToken);
+
+		goNext();
+		if (currentToken.getLecical() == "[") {
+			// '['
+			eat(currentToken);
+
+			// expression
+			compileExpression();
+
+			// ']'
+			goNext();
+			eat(currentToken);
+		}
+
+		// '='
+		eat(currentToken);
+
+		// expression
+		compileExpression();
+
+		// ';'
+		goNext();
+		eat(currentToken);
+
 		output.add("</letStatement>");
 	}
 
@@ -338,6 +369,7 @@ public class CompilationEngine {
 	// (expression ( ',' expression)* )?
 	private void compileExpressionList() {
 		output.add("<expressionList>");
+
 		output.add("</expressionList>");
 	}
 
