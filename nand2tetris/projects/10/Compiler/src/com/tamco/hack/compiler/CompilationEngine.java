@@ -486,6 +486,10 @@ public class CompilationEngine {
 				token.getLecical() == "=";
 	}
 
+	private boolean isUnaryOp(Lexical token) {
+		return token.getLecical() == "-" || token.getLecical() == "~";
+	}
+
 	private void eat(Lexical token) {
 		output.add(token.toString());
 	}
