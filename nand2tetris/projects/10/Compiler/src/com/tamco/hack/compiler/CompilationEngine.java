@@ -289,10 +289,6 @@ public class CompilationEngine {
 		output.add("</letStatement>");
 	}
 
-	private void compileWhileStatement() {
-
-	}
-
 	// 'if' '(' expression ')' '{' statements '}' ( 'else' '{' statements '}' )?
 	private void compileIfStatement() {
 		output.add("<ifStatement>");
@@ -300,24 +296,49 @@ public class CompilationEngine {
 		output.add("</ifStatement>");
 	}
 
+	// 'while' '(' expression ')' '{' statements '}'
+	private void compileWhileStatement() {
+
+	}
+
+	// 'do' subroutineCall ';'
 	private void compileDoStatement() {
 		output.add("<doStatement>");
 
 		output.add("</doStatement>");
 	}
 
+	// 'return' expression? ';'
 	private void compileReturnStatement() {
 		output.add("<returnStatement>");
 
 		output.add("</returnStatement>");
 	}
 
+	// term (op term)*
 	private void compileExpression() {
+		output.add("<expression>");
+
+		output.add("</expression>");
+	}
+
+	// integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' |
+	// subroutineCall | '(' expression ')' | unaryOp term
+	private void compileTerm() {
+		output.add("<term>");
+
+		output.add("</term>");
+	}
+
+	// subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
+	private void compileSubroutineCall() {
 
 	}
 
-	private void compileTerm() {
-
+	// (expression ( ',' expression)* )?
+	private void compileExpressionList() {
+		output.add("<expressionList>");
+		output.add("</expressionList>");
 	}
 
 	private void eat(Lexical token) {
