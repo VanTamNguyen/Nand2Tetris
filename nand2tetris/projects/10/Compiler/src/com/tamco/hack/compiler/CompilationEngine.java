@@ -137,6 +137,34 @@ public class CompilationEngine {
 	private void compileParameterList() {
 		output.add("<parameterList>");
 
+		goNext();
+		if (currentToken.getLecical() != ")") {
+			// type
+			eat(currentToken);
+
+			// varName
+			goNext();
+			eat(currentToken);
+
+			goNext();
+			while (currentToken.getLecical() == ",") {
+				// ','
+				eat(currentToken);
+
+				// type
+				goNext();
+				eat(currentToken);
+
+				// varName
+				goNext();
+				eat(currentToken);
+
+				goNext();
+			}
+		}
+
+		goBack();
+
 		output.add("</parameterList>");
 	}
 
