@@ -350,6 +350,28 @@ public class CompilationEngine {
 		goNext();
 		eat(currentToken);
 
+		goNext();
+		if (currentToken.getLecical() == "else") {
+			// 'else'
+			eat(currentToken);
+
+			// '{'
+			goNext();
+			eat(currentToken);
+
+			// statements
+			compileStatements();
+
+			// '}'
+			goNext();
+			eat(currentToken);
+
+		} else {
+			goBack();
+		}
+
+
+
 		output.add("</ifStatement>");
 	}
 
