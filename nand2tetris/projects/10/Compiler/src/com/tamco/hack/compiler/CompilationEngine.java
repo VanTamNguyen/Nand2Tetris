@@ -428,6 +428,22 @@ public class CompilationEngine {
 	private void compileReturnStatement() {
 		output.add("<returnStatement>");
 
+		// 'return'
+		goNext();
+		eat(currentToken);
+
+		goNext();
+		if (currentToken.getLecical() != ";") {
+			// expression
+			goBack();
+			compileExpression();
+
+			goNext();
+		}
+
+		// ';'
+		eat(currentToken);
+
 		output.add("</returnStatement>");
 	}
 
