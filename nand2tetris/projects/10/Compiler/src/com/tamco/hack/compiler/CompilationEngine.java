@@ -590,6 +590,22 @@ public class CompilationEngine {
 	private void compileExpressionList() {
 		output.add("<expressionList>");
 
+		// expression
+		compileExpression();
+
+		goNext();
+		while (currentToken.getLecical() == ",") {
+			// ','
+			eat(currentToken);
+
+			// expression
+			compileExpression();
+
+			goNext();
+		}
+
+		goBack();
+
 		output.add("</expressionList>");
 	}
 
