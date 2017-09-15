@@ -548,7 +548,42 @@ public class CompilationEngine {
 
 	// subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
 	private void compileSubroutineCall() {
+		goNext();
 
+		// subroutineName | (className | varName)
+		eat(currentToken);
+
+		goNext();
+		if (currentToken.getLecical() == "(") { // Case: subroutineName '(' expressionList ')'
+			// '('
+			eat(currentToken);
+
+			// expressionList
+			compileExpressionList();
+
+			// ')'
+			goNext();
+			eat(currentToken);
+
+		} else if (currentToken.getLecical() == ".") { // Case: (className | varName) '.' subroutineName '(' expressionList ')'
+			// '.'
+			eat(currentToken);
+
+			// subroutineName
+			goNext();
+			eat(currentToken);
+
+			// '('
+			goNext();
+			eat(currentToken);
+
+			// expressionList
+			compileExpressionList();
+
+			// ')'
+			goNext();
+			eat(currentToken);
+		}
 	}
 
 	// (expression ( ',' expression)* )?
