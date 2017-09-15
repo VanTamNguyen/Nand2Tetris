@@ -471,8 +471,40 @@ public class CompilationEngine {
 
 	// integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' |
 	// subroutineCall | '(' expression ')' | unaryOp term
-	private void compileTerm() {
+	private void compileTerm() { // TODO: Verify this method again
 		output.add("<term>");
+
+		goNext();
+		if (currentToken.getType() == Lexical.Type.integerConstant) {
+			// Case: integerConstant
+
+		} else if (currentToken.getType() == Lexical.Type.stringConstant) {
+			// Case: stringConstant
+
+		} else if (isKeywordConstant(currentToken)) {
+			// Case: keywordConstant
+
+		} else if (isUnaryOp(currentToken)){
+			// Case: unaryOp term
+
+		} else if (currentToken.getLecical() == "(") {
+			// Case: '(' expression ')'
+
+		} else {
+			goNext();
+			if (currentToken.getLecical() == "[") {
+				// Case: varName '[' expression ']'
+				goBack();
+
+			} else if (currentToken.getLecical() == "(" || currentToken.getLecical() == ".") {
+				// Case: subroutineCall
+				goBack();
+
+			} else {
+				// Case: varName
+				goBack();
+			}
+		}
 
 		output.add("</term>");
 	}
