@@ -451,6 +451,21 @@ public class CompilationEngine {
 	private void compileExpression() {
 		output.add("<expression>");
 
+		// term
+		compileTerm();
+
+		goNext();
+		while (isOp(currentToken)) {
+			// op
+			eat(currentToken);
+
+			// term
+			compileTerm();
+			goNext();
+		}
+
+		goBack();
+
 		output.add("</expression>");
 	}
 
