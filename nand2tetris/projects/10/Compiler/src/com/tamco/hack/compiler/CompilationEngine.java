@@ -477,18 +477,37 @@ public class CompilationEngine {
 		goNext();
 		if (currentToken.getType() == Lexical.Type.integerConstant) {
 			// Case: integerConstant
+			eat(currentToken);
 
 		} else if (currentToken.getType() == Lexical.Type.stringConstant) {
 			// Case: stringConstant
+			eat(currentToken);
 
 		} else if (isKeywordConstant(currentToken)) {
 			// Case: keywordConstant
+			eat(currentToken);
 
 		} else if (isUnaryOp(currentToken)){
 			// Case: unaryOp term
 
+			// unaryOp
+			eat(currentToken);
+
+			// term
+			compileTerm();
+
 		} else if (currentToken.getLecical() == "(") {
 			// Case: '(' expression ')'
+
+			// '('
+			eat(currentToken);
+
+			// expression
+			compileExpression();
+
+			// ')'
+			goNext();
+			eat(currentToken);
 
 		} else {
 			goNext();
