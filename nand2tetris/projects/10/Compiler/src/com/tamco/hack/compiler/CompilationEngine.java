@@ -471,7 +471,7 @@ public class CompilationEngine {
 
 	// integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' |
 	// subroutineCall | '(' expression ')' | unaryOp term
-	private void compileTerm() { // TODO: Verify this method again
+	private void compileTerm() {
 		output.add("<term>");
 
 		goNext();
@@ -515,13 +515,31 @@ public class CompilationEngine {
 				// Case: varName '[' expression ']'
 				goBack();
 
+				// varName
+				eat(currentToken);
+
+				// '['
+				goNext();
+				eat(currentToken);
+
+				// expression
+				compileExpression();
+
+				// ']'
+				goNext();
+				eat(currentToken);
+
 			} else if (currentToken.getLecical() == "(" || currentToken.getLecical() == ".") {
 				// Case: subroutineCall
 				goBack();
+				compileSubroutineCall();
 
 			} else {
 				// Case: varName
 				goBack();
+
+				// varName
+				eat(currentToken);
 			}
 		}
 
