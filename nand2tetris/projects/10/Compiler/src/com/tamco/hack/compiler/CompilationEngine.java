@@ -532,7 +532,7 @@ public class CompilationEngine {
 
 			} else if (currentToken.getLecical().equals("(") || currentToken.getLecical().equals(".")) {
 				// Case: subroutineCall
-				goBack();
+				goBack(); goBack(); // Go to begin to compile subroutineCall
 				compileSubroutineCall();
 
 			} else {
