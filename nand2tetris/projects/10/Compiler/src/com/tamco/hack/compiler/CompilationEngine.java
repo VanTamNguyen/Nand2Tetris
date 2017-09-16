@@ -593,21 +593,29 @@ public class CompilationEngine {
 	private void compileExpressionList() {
 		output.add("<expressionList>");
 
-		// expression
-		compileExpression();
-
 		goNext();
-		while (currentToken.getLecical().equals(",")) {
-			// ','
-			eat(currentToken);
+		if (!currentToken.getLecical().equals(")")) {
+			goBack();
 
 			// expression
 			compileExpression();
 
 			goNext();
-		}
+			while (currentToken.getLecical().equals(",")) {
+				// ','
+				eat(currentToken);
 
-		goBack();
+				// expression
+				compileExpression();
+
+				goNext();
+			}
+
+			goBack();
+
+		} else {
+			goBack();
+		}
 
 		output.add("</expressionList>");
 	}

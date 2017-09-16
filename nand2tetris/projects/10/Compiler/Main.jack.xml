@@ -270,17 +270,16 @@
 <identifier> println </identifier>
 <symbol> ( </symbol>
 <expressionList>
-<expression>
-<term>
-<symbol> ) </symbol>
-</term>
-</expression>
 </expressionList>
+<symbol> ) </symbol>
 <symbol> ; </symbol>
-<keyword> return </keyword>
 </doStatement>
-</statements>
+<returnStatement>
+<keyword> return </keyword>
 <symbol> ; </symbol>
+</returnStatement>
+</statements>
+<symbol> } </symbol>
 </subroutineBody>
 </subroutineDec>
 <symbol> } </symbol>
