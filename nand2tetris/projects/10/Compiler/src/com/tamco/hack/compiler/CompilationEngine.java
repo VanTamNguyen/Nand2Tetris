@@ -59,11 +59,12 @@ public class CompilationEngine {
 	}
 
 	private boolean isClassVarDec(Lexical token) {
-		return token.getLecical() == "static" || token.getLecical() == "field";
+		return token.getLecical().equals("static") || token.getLecical().equals("field");
 	}
 
 	private boolean isClassSubroutineDec(Lexical token) {
-		return token.getLecical() == "constructor" || token.getLecical() == "function" || token.getLecical() == "method";
+		return token.getLecical().equals("constructor") || token.getLecical().equals("function") ||
+				token.getLecical().equals("method");
 	}
 
 	// ( 'static' | 'field' ) type varName ( ',' varName)* ';'
@@ -83,7 +84,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		while (currentToken.getLecical() == ",") {
+		while (currentToken.getLecical().equals(",")) {
 			// ','
 			eat(currentToken);
 
@@ -138,7 +139,7 @@ public class CompilationEngine {
 		output.add("<parameterList>");
 
 		goNext();
-		if (currentToken.getLecical() != ")") {
+		if (!currentToken.getLecical().equals(")")) {
 			// type
 			eat(currentToken);
 
@@ -147,7 +148,7 @@ public class CompilationEngine {
 			eat(currentToken);
 
 			goNext();
-			while (currentToken.getLecical() == ",") {
+			while (currentToken.getLecical().equals(",")) {
 				// ','
 				eat(currentToken);
 
@@ -196,15 +197,15 @@ public class CompilationEngine {
 	}
 
 	private boolean isVarDec(Lexical token) {
-		return token.getLecical() == "var";
+		return token.getLecical().equals("var");
 	}
 
 	private boolean isStatement(Lexical token) {
-		return token.getLecical() == "let" ||
-				token.getLecical() == "if" ||
-				token.getLecical() == "while" ||
-				token.getLecical() == "do" ||
-				token.getLecical() == "return";
+		return token.getLecical().equals("let") ||
+				token.getLecical().equals("if") ||
+				token.getLecical().equals("while") ||
+				token.getLecical().equals("do") ||
+				token.getLecical().equals("return");
 	}
 
 	// 'var' type varName ( ',' varName)* ';'
@@ -224,7 +225,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		while (currentToken.getLecical() == ",") {
+		while (currentToken.getLecical().equals(",")) {
 			// ','
 			eat(currentToken);
 
@@ -260,23 +261,23 @@ public class CompilationEngine {
 	private void compileStatement() {
 		goNext();
 
-		if (currentToken.getLecical() == "let") {
+		if (currentToken.getLecical().equals("let")) {
 			goBack();
 			compileLetStatement();
 
-		} else if (currentToken.getLecical() == "if") {
+		} else if (currentToken.getLecical().equals("if")) {
 			goBack();
 			compileIfStatement();
 
-		} else if (currentToken.getLecical() == "while") {
+		} else if (currentToken.getLecical().equals("while")) {
 			goBack();
 			compileWhileStatement();
 
-		} else if (currentToken.getLecical() == "do") {
+		} else if (currentToken.getLecical().equals("do")) {
 			goBack();
 			compileDoStatement();
 
-		} else if (currentToken.getLecical() == "return") {
+		} else if (currentToken.getLecical().equals("return")) {
 			goBack();
 			compileReturnStatement();
 		}
@@ -295,7 +296,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		if (currentToken.getLecical() == "[") {
+		if (currentToken.getLecical().equals("[")) {
 			// '['
 			eat(currentToken);
 
@@ -351,7 +352,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		if (currentToken.getLecical() == "else") {
+		if (currentToken.getLecical().equals("else")) {
 			// 'else'
 			eat(currentToken);
 
@@ -433,7 +434,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		if (currentToken.getLecical() != ";") {
+		if (!currentToken.getLecical().equals(";")) {
 			// expression
 			goBack();
 			compileExpression();
@@ -496,7 +497,7 @@ public class CompilationEngine {
 			// term
 			compileTerm();
 
-		} else if (currentToken.getLecical() == "(") {
+		} else if (currentToken.getLecical().equals("(")) {
 			// Case: '(' expression ')'
 
 			// '('
@@ -511,7 +512,7 @@ public class CompilationEngine {
 
 		} else {
 			goNext();
-			if (currentToken.getLecical() == "[") {
+			if (currentToken.getLecical().equals("[")) {
 				// Case: varName '[' expression ']'
 				goBack();
 
@@ -529,7 +530,7 @@ public class CompilationEngine {
 				goNext();
 				eat(currentToken);
 
-			} else if (currentToken.getLecical() == "(" || currentToken.getLecical() == ".") {
+			} else if (currentToken.getLecical().equals("(") || currentToken.getLecical().equals(".")) {
 				// Case: subroutineCall
 				goBack();
 				compileSubroutineCall();
@@ -554,7 +555,7 @@ public class CompilationEngine {
 		eat(currentToken);
 
 		goNext();
-		if (currentToken.getLecical() == "(") { // Case: subroutineName '(' expressionList ')'
+		if (currentToken.getLecical().equals("(")) { // Case: subroutineName '(' expressionList ')'
 			// '('
 			eat(currentToken);
 
@@ -565,7 +566,7 @@ public class CompilationEngine {
 			goNext();
 			eat(currentToken);
 
-		} else if (currentToken.getLecical() == ".") { // Case: (className | varName) '.' subroutineName '(' expressionList ')'
+		} else if (currentToken.getLecical().equals(".")) { // Case: (className | varName) '.' subroutineName '(' expressionList ')'
 			// '.'
 			eat(currentToken);
 
@@ -594,7 +595,7 @@ public class CompilationEngine {
 		compileExpression();
 
 		goNext();
-		while (currentToken.getLecical() == ",") {
+		while (currentToken.getLecical().equals(",")) {
 			// ','
 			eat(currentToken);
 
@@ -610,26 +611,26 @@ public class CompilationEngine {
 	}
 
 	private boolean isOp(Lexical token) {
-		return token.getLecical() == "+" ||
-				token.getLecical() == "-" ||
-				token.getLecical() == "*" ||
-				token.getLecical() == "/" ||
-				token.getLecical() == "&" ||
-				token.getLecical() == "|" ||
-				token.getLecical() == "<" ||
-				token.getLecical() == ">" ||
-				token.getLecical() == "=";
+		return token.getLecical().equals("+") ||
+				token.getLecical().equals("-") ||
+				token.getLecical().equals("*") ||
+				token.getLecical().equals("/") ||
+				token.getLecical().equals("&") ||
+				token.getLecical().equals("|") ||
+				token.getLecical().equals("<") ||
+				token.getLecical().equals(">") ||
+				token.getLecical().equals("=");
 	}
 
 	private boolean isUnaryOp(Lexical token) {
-		return token.getLecical() == "-" || token.getLecical() == "~";
+		return token.getLecical().equals("-") || token.getLecical().equals("~");
 	}
 
 	private boolean isKeywordConstant(Lexical token) {
-		return token.getLecical() == "true" ||
-				token.getLecical() == "false" ||
-				token.getLecical() == "null" ||
-				token.getLecical() == "this";
+		return token.getLecical().equals("true") ||
+				token.getLecical().equals("false") ||
+				token.getLecical().equals("null") ||
+				token.getLecical().equals("this");
 	}
 
 	private void eat(Lexical token) {
