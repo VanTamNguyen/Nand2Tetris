@@ -306,6 +306,8 @@ public class CompilationEngine {
 			// ']'
 			goNext();
 			eat(currentToken);
+
+			goNext();
 		}
 
 		// '='
