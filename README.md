@@ -23,6 +23,16 @@ The compilation of high-level programming language into a low-level one focuses 
 * **Symbol table**: A data structure to keep track all *identifiers*. Whenever a new *identifier* is encountered for the first time the compiler adds its description to *symbol table*. Whennever an *identifies* is encountered elsewhere in the source code the compiler looks it up in symbol table and get all information needed from symbol table.
 ![Symbol Table](images/symbol-table.png)
 
+* **Handling variable**
+
+* **Handling expression**
+
+* **Handling flow control**
+
+* **Handling object**
+
+* **Handling array**
+
 #### 11.2 Command translation
 
 ### Chapter 12: Operating system
