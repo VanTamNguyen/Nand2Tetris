@@ -27,11 +27,13 @@ The compilation of high-level programming language into a low-level one focuses 
 
 * **Handling expression**
 
-* **Handling flow control**
+* **Handling flow of control**
 
 * **Handling object**
+![](images/handling-object.png)
 
 * **Handling array**
+![](images/handling-array)
 
 #### 11.2 Command translation
 
