@@ -3,17 +3,17 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 
 
 ### [Chapter 1: Boolean logic](nand2tetris/projects/01)
-### [Chapter 2: Boolean arithmetic](nand2tetris/projects/01)
-### [Chapter 3: Sequential logic](nand2tetris/projects/01)
-### [Chapter 4: Machine language](nand2tetris/projects/01)
-### [Chapter 5: Computer architecture](nand2tetris/projects/01)
-### [Chapter 6: Assembler](nand2tetris/projects/01)
-### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/01) 
-### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/01)
-### [Chapter 9: High-level language](nand2tetris/projects/01)
-### [Chapter 10: Compiler I - Syntax analysis](nand2tetris/projects/01)
+### [Chapter 2: Boolean arithmetic](nand2tetris/projects/02)
+### [Chapter 3: Sequential logic](nand2tetris/projects/03)
+### [Chapter 4: Machine language](nand2tetris/projects/04)
+### [Chapter 5: Computer architecture](nand2tetris/projects/05)
+### [Chapter 6: Assembler](nand2tetris/projects/06)
+### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
+### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
+### [Chapter 9: High-level language](nand2tetris/projects/09)
+### [Chapter 10: Compiler I - Syntax analysis](nand2tetris/projects/10)
 
-### [Chapter 11: Compiler II - Code generation](nand2tetris/projects/01)
+### [Chapter 11: Compiler II - Code generation](nand2tetris/projects/11)
 The compilation of high-level programming language into a low-level one focuses on 2 main issues: ***data translation*** and ***command translation***
 #### 11.1 Data translation
 * **Variables** For variables we need to care about some of its properties:
@@ -36,4 +36,4 @@ The compilation of high-level programming language into a low-level one focuses 
 
 * **Handling flow of control**
 
-### [Chapter 12: Operating system](nand2tetris/projects/01)
+### [Chapter 12: Operating system](nand2tetris/projects/12)
