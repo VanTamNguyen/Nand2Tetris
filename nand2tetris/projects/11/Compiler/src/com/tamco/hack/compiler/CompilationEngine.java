@@ -24,8 +24,6 @@ public class CompilationEngine {
 
 	// 'class' className '{' classVarDec* subroutineDec* '}'
 	public void compileClass() {
-		output.add("<class>");
-
 		// 'class'
 		goNext();
 		eat(currentToken);
@@ -54,8 +52,6 @@ public class CompilationEngine {
 
 		// '}'
 		eat(currentToken);
-
-		output.add("</class>");
 	}
 
 	private boolean isClassVarDec(Lexical token) {
@@ -69,8 +65,6 @@ public class CompilationEngine {
 
 	// ( 'static' | 'field' ) type varName ( ',' varName)* ';'
 	private void compileClassVarDec() {
-		output.add("<classVarDec>");
-
 		// 'static' | 'field'
 		goNext();
 		eat(currentToken);
@@ -97,14 +91,10 @@ public class CompilationEngine {
 
 		// ';'
 		eat(currentToken);
-
-		output.add("</classVarDec>");
 	}
 
 	// ( 'constructor' | 'function' | 'method' ) ( 'void' | type ) subroutineName '(' parameterList ')' subroutineBody
 	private void compileSubroutineDec() {
-		output.add("<subroutineDec>");
-
 		// 'constructor' | 'function' | 'method'
 		goNext();
 		eat(currentToken);
@@ -130,14 +120,10 @@ public class CompilationEngine {
 
 		// subroutineBody
 		compileSubroutineBody();
-
-		output.add("</subroutineDec>");
 	}
 
 	// ((type varName) ( ',' type varName)*)?
 	private void compileParameterList() {
-		output.add("<parameterList>");
-
 		goNext();
 		if (!currentToken.getLecical().equals(")")) {
 			// type
@@ -165,14 +151,10 @@ public class CompilationEngine {
 		}
 
 		goBack();
-
-		output.add("</parameterList>");
 	}
 
 	// '{' varDec* statements '}'
 	private void compileSubroutineBody() {
-		output.add("<subroutineBody>");
-
 		// '{'
 		goNext();
 		eat(currentToken);
@@ -192,8 +174,6 @@ public class CompilationEngine {
 		// '}'
 		goNext();
 		eat(currentToken);
-
-		output.add("</subroutineBody>");
 	}
 
 	private boolean isVarDec(Lexical token) {
@@ -210,8 +190,6 @@ public class CompilationEngine {
 
 	// 'var' type varName ( ',' varName)* ';'
 	private void compileVarDec() {
-		output.add("<varDec>");
-
 		// 'var'
 		goNext();
 		eat(currentToken);
@@ -238,14 +216,10 @@ public class CompilationEngine {
 
 		// ';'
 		eat(currentToken);
-
-		output.add("</varDec>");
 	}
 
 	// statement*
 	private void compileStatements() {
-		output.add("<statements>");
-
 		goNext();
 		while (isStatement(currentToken)) {
 			goBack();
@@ -254,8 +228,6 @@ public class CompilationEngine {
 		}
 
 		goBack();
-
-		output.add("</statements>");
 	}
 
 	private void compileStatement() {
@@ -285,8 +257,6 @@ public class CompilationEngine {
 
 	// 'let' varName ('[' expression ']')? '=' expression ';'
 	private void compileLetStatement() {
-		output.add("<letStatement>");
-
 		// 'let'
 		goNext();
 		eat(currentToken);
@@ -319,14 +289,10 @@ public class CompilationEngine {
 		// ';'
 		goNext();
 		eat(currentToken);
-
-		output.add("</letStatement>");
 	}
 
 	// 'if' '(' expression ')' '{' statements '}' ( 'else' '{' statements '}' )?
 	private void compileIfStatement() {
-		output.add("<ifStatement>");
-
 		// 'if'
 		goNext();
 		eat(currentToken);
@@ -372,14 +338,10 @@ public class CompilationEngine {
 		} else {
 			goBack();
 		}
-
-		output.add("</ifStatement>");
 	}
 
 	// 'while' '(' expression ')' '{' statements '}'
 	private void compileWhileStatement() {
-		output.add("<whileStatement>");
-
 		// 'while'
 		goNext();
 		eat(currentToken);
@@ -405,14 +367,10 @@ public class CompilationEngine {
 		// '}'
 		goNext();
 		eat(currentToken);
-
-		output.add("</whileStatement>");
 	}
 
 	// 'do' subroutineCall ';'
 	private void compileDoStatement() {
-		output.add("<doStatement>");
-
 		// 'do'
 		goNext();
 		eat(currentToken);
@@ -423,14 +381,10 @@ public class CompilationEngine {
 		// ';'
 		goNext();
 		eat(currentToken);
-
-		output.add("</doStatement>");
 	}
 
 	// 'return' expression? ';'
 	private void compileReturnStatement() {
-		output.add("<returnStatement>");
-
 		// 'return'
 		goNext();
 		eat(currentToken);
@@ -446,14 +400,10 @@ public class CompilationEngine {
 
 		// ';'
 		eat(currentToken);
-
-		output.add("</returnStatement>");
 	}
 
 	// term (op term)*
 	private void compileExpression() {
-		output.add("<expression>");
-
 		// term
 		compileTerm();
 
@@ -468,15 +418,11 @@ public class CompilationEngine {
 		}
 
 		goBack();
-
-		output.add("</expression>");
 	}
 
 	// integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' |
 	// subroutineCall | '(' expression ')' | unaryOp term
 	private void compileTerm() {
-		output.add("<term>");
-
 		goNext();
 		if (currentToken.getType() == Lexical.Type.integerConstant) {
 			// Case: integerConstant
@@ -545,8 +491,6 @@ public class CompilationEngine {
 				eat(currentToken);
 			}
 		}
-
-		output.add("</term>");
 	}
 
 	// subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
@@ -591,8 +535,6 @@ public class CompilationEngine {
 
 	// (expression ( ',' expression)* )?
 	private void compileExpressionList() {
-		output.add("<expressionList>");
-
 		goNext();
 		if (!currentToken.getLecical().equals(")")) {
 			goBack();
@@ -616,8 +558,6 @@ public class CompilationEngine {
 		} else {
 			goBack();
 		}
-
-		output.add("</expressionList>");
 	}
 
 	private boolean isOp(Lexical token) {
