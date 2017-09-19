@@ -33,7 +33,7 @@ The compilation of high-level programming language into a low-level one focuses 
 ![](images/handling-object.png)
 
 * **Handling array**
-![](images/handling-array)
+![](images/handling-array.png)
 
 #### 11.2 Command translation
 
