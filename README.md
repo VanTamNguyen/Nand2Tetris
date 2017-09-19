@@ -25,10 +25,6 @@ The compilation of high-level programming language into a low-level one focuses 
 
 * **Handling variable**
 
-* **Handling expression**
-
-* **Handling flow of control**
-
 * **Handling object**
 ![](images/handling-object.png)
 
@@ -36,5 +32,8 @@ The compilation of high-level programming language into a low-level one focuses 
 ![](images/handling-array.png)
 
 #### 11.2 Command translation
+* **Handling expression**
+
+* **Handling flow of control**
 
 ### Chapter 12: Operating system
