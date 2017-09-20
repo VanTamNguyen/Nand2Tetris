@@ -1,25 +1,34 @@
 package com.tamco.hack.compiler;
 
 import com.tamco.hack.compiler.lexical.Lexical;
+import com.tamco.hack.compiler.symbol.Symbol;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tam-co on 12/07/2017.
  */
 public class CompilationEngine {
 
+	private String clazzName;
+
 	private List<Lexical> tokens;
 
-	private List<String> output;
+	private List<String> vmCommands;
 
 	private int count = -1;
 
 	private Lexical currentToken;
 
-	public CompilationEngine(List<Lexical> tokens, List<String> output) {
+	private Map<String, Symbol> clazzSymbolTable;
+
+	public CompilationEngine(String clazzName, List<Lexical> tokens, List<String> vmCommands) {
+		this.clazzName = clazzName;
 		this.tokens = tokens;
-		this.output = output;
+		this.vmCommands = vmCommands;
+		this.clazzSymbolTable = new HashMap<>();
 	}
 
 	// 'class' className '{' classVarDec* subroutineDec* '}'
@@ -584,7 +593,7 @@ public class CompilationEngine {
 	}
 
 	private void eat(Lexical token) {
-		output.add(token.toString());
+		// I don't want to erase this method because it makes my compilation engine looks beautiful
 	}
 
 	private void goNext() {

@@ -32,13 +32,15 @@ public class JackAnalyzer {
 		for (File sourceFile : sourceFiles) {
 
 			if (sourceFile.getName().endsWith(".jack")) {
+				String className = sourceFile.getName().substring(0, sourceFile.getName().indexOf(".") + 1);
+
 				// Tokenize the source code file
 				JackTokenizer tokenizer = new JackTokenizer(sourceFile);
 				List<Lexical> tokens = tokenizer.tokenize();
 
 				// Parse the source code file
 				List<String> output = new ArrayList<>();
-				CompilationEngine compilationEngine = new CompilationEngine(tokens, output);
+				CompilationEngine compilationEngine = new CompilationEngine(className, tokens, output);
 				compilationEngine.compileClass();
 
 				StringBuilder content = new StringBuilder("");
