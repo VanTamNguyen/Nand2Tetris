@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by tam-co on 12/07/2017.
  */
-public class JackAnalyzer {
+public class JackCompiler {
 
 	public static void main(String[] args) {
 		File src1 = new File("../ArrayTest");
@@ -48,7 +48,7 @@ public class JackAnalyzer {
 					content.append(line).append("\n");
 				});
 
-				String outputFileName = sourceFile.getName() + ".xml";
+				String outputFileName = className + ".vm";
 				File outputFile = new File(sourceFile.getParent(), outputFileName);
 				FileWriter fileWriter = new FileWriter(outputFile);
 				BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
