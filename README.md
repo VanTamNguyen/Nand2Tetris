@@ -14,7 +14,7 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
     * Mux(a, b, sel) multiplexor choose one from many
     ![](images/mux.png)
     * DMux(in, sel)
-    ![](images/dmux.png)
+    <br />![](images/dmux.png)
 
 ### [Chapter 2: Boolean arithmetic](nand2tetris/projects/02)
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
