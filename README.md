@@ -3,6 +3,17 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 
 
 ### [Chapter 1: Boolean logic](nand2tetris/projects/01)
+* Truth table representation
+* Canonical representation
+* Logic gates
+    * Nand(a, b)
+    * Not(in)
+    * And(a, b)
+    * Or(a, b)
+    * Xor(a, b)
+    * Mux(a, b, sel) multiplexor choose one from many
+    * DMux(in, sel)
+
 ### [Chapter 2: Boolean arithmetic](nand2tetris/projects/02)
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
