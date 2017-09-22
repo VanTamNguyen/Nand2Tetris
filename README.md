@@ -18,6 +18,7 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 
 ### [Chapter 2: Boolean arithmetic](nand2tetris/projects/02)
 * **Signed Binary Number**: Most computer systems today use the method called *2's complement*, aka *radix complement*. In 2's complement of n bits, x + (minus) x = 2 to the n.
+![radix](images/radix.png)
 
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
