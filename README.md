@@ -21,10 +21,13 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 <br />![radix](images/radix.png)
 
 * **HalfAdder**
+![](images/half-adder.png)
 
 * **Full Adder**
+![](images/full-adder.png)
 
 * **ALU**
+![](images/alu.png)
 
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
