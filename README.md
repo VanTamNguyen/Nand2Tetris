@@ -3,9 +3,9 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 
 
 ### [Chapter 1: Boolean logic](nand2tetris/projects/01)
-* Truth table representation
-* Canonical representation
-* Logic gates
+* **Truth table representation**
+* **Canonical representation**
+* **Logic gates**
     * Nand(a, b)
     * Not(in)
     * And(a, b)
@@ -17,8 +17,14 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
     <br />![](images/dmux.png)
 
 ### [Chapter 2: Boolean arithmetic](nand2tetris/projects/02)
-* **Signed Binary Number**: Most computer systems today use the method called *2's complement*, aka *radix complement*. In 2's complement of n bits, x + (minus) x = 2 to the n.
+* **Signed Binary Number**: Most computer systems today use the method called *2's complement*, aka *radix complement*. In 2's complement of n bits, x + (minus) x = 2 to the n. With *radix complement* we don't need to care about substraction operation. We can substract with add operation. That's super cool. So we only need Add chip.
 ![radix](images/radix.png)
+
+* **HalfAdder**
+
+* **Full Adder**
+
+* **ALU**
 
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
