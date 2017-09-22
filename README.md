@@ -30,6 +30,14 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 <br />![](images/alu.png)
 
 ### [Chapter 3: Sequential logic](nand2tetris/projects/03)
+* **Combinational vs Sequential Logic**
+    * **Combinational Logic**: An implementation of boolean function. The output depends on only the input. Meaning with a certain input there is a certain output.
+    * **Sequential Logic**
+        * Use clock
+        * Maintain state
+        * Output depends on input and the current state
+    * [Good explaination of differences between Combinational and Sequential](https://www.cs.umd.edu/class/sum2003/cmsc311/Notes/Seq/diff.html)
+
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
