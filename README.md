@@ -42,6 +42,7 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 * **Data Flip-Flop (DFF)** contains a clock input, a gate's input and a gate's output. DFF behavior is *out(t) = in(t-1)* where t is the current clock cycle. 
 
 * **1-bit Register (Bit)** is a storage device. It can *store*(remember) a value over time. Its behavior is *out(t) = out(t-1)*
+<br />![dff](images/dff.png)
 
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
