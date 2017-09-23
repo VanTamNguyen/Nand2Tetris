@@ -45,6 +45,9 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris. Ha
 * **1-bit Register (Bit)** is a storage device. It can *store*(remember) a value over time. Its behavior is *out(t) = out(t-1)*
 <br />![dff](images/dff.png)
 
+* **Memory**
+<br />![ram](images/ram.png)
+
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
