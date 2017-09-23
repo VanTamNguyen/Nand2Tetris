@@ -24,6 +24,10 @@ public class CompilationEngine {
 
 	private Map<String, Symbol> clazzSymbolTable;
 
+	private int noField = -1;
+
+	private int noStatic = -1;
+
 	public CompilationEngine(String clazzName, List<Lexical> tokens, List<String> vmCommands) {
 		this.clazzName = clazzName;
 		this.tokens = tokens;
@@ -74,17 +78,19 @@ public class CompilationEngine {
 
 	// ( 'static' | 'field' ) type varName ( ',' varName)* ';'
 	private void compileClassVarDec() {
+		String kind, type, name;
+
 		// 'static' | 'field'
 		goNext();
-		eat(currentToken);
+		kind = currentToken.getLecical();
 
 		// type
 		goNext();
-		eat(currentToken);
+		type = currentToken.getLecical();
 
 		// varName
 		goNext();
-		eat(currentToken);
+		name = currentToken.getLecical();
 
 		goNext();
 		while (currentToken.getLecical().equals(",")) {
