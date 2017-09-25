@@ -92,6 +92,15 @@ public class CompilationEngine {
 		goNext();
 		name = currentToken.getLecical();
 
+		if (kind.equals("static")) {
+			noStatic++;
+			Symbol symbol = new Symbol(name, type, Symbol.Kind.fromString(kind), noStatic);
+			clazzSymbolTable.put(name, symbol);
+
+		} else if (kind.equals("field")) {
+			noField++;
+		}
+
 		goNext();
 		while (currentToken.getLecical().equals(",")) {
 			// ','
@@ -99,7 +108,16 @@ public class CompilationEngine {
 
 			// varName
 			goNext();
-			eat(currentToken);
+			name = currentToken.getLecical();
+
+			if (kind.equals("static")) {
+				noStatic++;
+				Symbol symbol = new Symbol(name, type, Symbol.Kind.fromString(kind), noStatic);
+				clazzSymbolTable.put(name, symbol);
+
+			} else if (kind.equals("field")) {
+				noField++;
+			}
 
 			goNext();
 		}
