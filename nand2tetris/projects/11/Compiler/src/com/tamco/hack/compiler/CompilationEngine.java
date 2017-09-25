@@ -99,6 +99,8 @@ public class CompilationEngine {
 
 		} else if (kind.equals("field")) {
 			noField++;
+			Symbol symbol = new Symbol(name, type, Symbol.Kind.fromString(kind), noField);
+			clazzSymbolTable.put(name, symbol);
 		}
 
 		goNext();
@@ -117,6 +119,8 @@ public class CompilationEngine {
 
 			} else if (kind.equals("field")) {
 				noField++;
+				Symbol symbol = new Symbol(name, type, Symbol.Kind.fromString(kind), noField);
+				clazzSymbolTable.put(name, symbol);
 			}
 
 			goNext();
