@@ -53,9 +53,14 @@ Thank you professor Noam Nisan and professor Shimon Shocken for writing a super 
 * **Memory**
 <br />![ram](images/ram.png)
 
+
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
 * **A Instruction**
+<br />![a](images/a-instruction.png)
 * **C Instruction**
+<br />![a](images/c-instruction.png)
+
+
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
