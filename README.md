@@ -1,5 +1,5 @@
 # Nand2Tetris
-Nand2Tetris: Build a computer system from the ground up, from nand to tetris (nand is the fundamental logic gate to build others gates). Hardware and software. This github repository is place I store my taken notes when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the related courses on Coursera.org.<br/>
+Nand2Tetris: Build a computer system from the ground up, from nand to tetris (nand is the fundamental logic gate to build others gates). Hardware and software. This github repository is place I store my taken notes and exercises when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the related courses on Coursera.org.<br/>
 
 Thank you professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
 
