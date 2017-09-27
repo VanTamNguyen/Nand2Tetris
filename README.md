@@ -62,6 +62,13 @@ Thank you professor Noam Nisan and professor Shimon Shocken for writing a super 
 
 
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
+* **Central Processing Unit (CPU) of Hack Computer**
+    * **CPU Abstraction**
+    ![abstraction](images/cpu-abstraction.png)
+    * **CPU Implementation**
+    ![implementation](images/implementation.png)
+
+
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
 ### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
