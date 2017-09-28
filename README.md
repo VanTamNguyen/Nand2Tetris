@@ -3,9 +3,9 @@ Nand2Tetris: Build a computer system from the ground up, from nand to tetris (na
 
 This github repository is place I store my taken notes and exercises when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the [related courses](https://www.coursera.org/learn/build-a-computer) on Coursera.org.<br/>
 
-Thank you professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
+Thanks professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
 
-> *What I hear, I forget; What I see, I remember; What I do, I understand*
+> *What I hear, I forget; What I see, I remember; What I do, I understand* <br/>
 > —Confucius, 551–479 BC
 
 
@@ -78,8 +78,10 @@ Thank you professor Noam Nisan and professor Shimon Shocken for writing a super 
 <br />![assembler](images/assembler.png)
 
 * **Symbols**
-    * *Label symbols* (In the program above *LOOP* and *END* are label symbols)
-    * *Variable symbols* (In the program above *i* and *sum* are variable symbols)
+    * *Label symbols* (In the program above *LOOP* and *END* are label symbols) are used to mark the memory location of the next instruction in the program. Label symbols are used for *control flow* in the program.
+    * *Variable symbols* (In the program above *i* and *sum* are variable symbols) are treated as *variable*. Variables are mapped to consecutive memory locations.
+    
+* **Symbols table** 
 
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
 ### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
