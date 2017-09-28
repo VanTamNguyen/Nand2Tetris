@@ -81,7 +81,7 @@ Thanks professor Noam Nisan and professor Shimon Shocken for writing a super coo
     * *Label symbols* (In the program above *LOOP* and *END* are label symbols) are used to mark the memory location of the next instruction in the program. Label symbols are used for *control flow* in the program.
     * *Variable symbols* (In the program above *i* and *sum* are variable symbols) are treated as *variable*. Variables are mapped to consecutive memory locations.
     
-* **Symbols table** 
+* **Symbols table**: Since Hack instructions can contain symbols, the symbols must be resolved into actual addresses. 
 
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
 ### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
