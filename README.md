@@ -1,7 +1,7 @@
 # Nand2Tetris
 Nand2Tetris: Build a computer system from the ground up, from nand to tetris (nand is the fundamental logic gate to build others gates), from hardware to software.<br/>
 
-This github repository is place I store my taken notes and exercises when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the related courses on Coursera.org.<br/>
+This github repository is place I store my taken notes and exercises when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the [related courses](https://www.coursera.org/learn/build-a-computer) on Coursera.org.<br/>
 
 Thank you professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
 
@@ -75,6 +75,12 @@ Thank you professor Noam Nisan and professor Shimon Shocken for writing a super 
 
 
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
+<br />![assembler](images/assembler.png)
+
+* **Symbols**
+    * *Label symbols* (In the program above *LOOP* and *END* are label symbols)
+    * *Variable symbols* (In the program above *i* and *sum* are variable symbols)
+
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
 ### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
 ### [Chapter 9: High-level language](nand2tetris/projects/09)
