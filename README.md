@@ -82,12 +82,14 @@ Thanks professor Noam Nisan and professor Shimon Shocken for writing a super coo
     * *Variable symbols* (In the program above *i* and *sum* are variable symbols) are treated as *variable*. Variables are mapped to consecutive memory locations.
     
 * **Symbols table**: Since Hack instructions can contain symbols, the symbols must be resolved into actual addresses. <br/>
+
 | Symbol     | Memory location |
-| ---------- | --------------- |
+| :-------   | :----------:    |
 | i          | 16              |
 | sum        | 17              |
 | LOOP       | 4               |
 | END        | 18              |
+
 <br /> The table above is the symbol table for the program above. Since in Hack system we allocate memory for variable from memory 16 so the memory location for variable *i* will be 16 and *sum* will be 17. To specify label *LOOP* and *END* we count the number of instructions in the program so that *LOOP* will be4 and *END* will be 18. 
 
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
