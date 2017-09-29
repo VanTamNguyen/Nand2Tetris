@@ -1,9 +1,11 @@
 # Nand2Tetris
-Nand2Tetris: Build a computer system from the ground up, from nand to tetris (nand is the fundamental logic gate to build others gates). Hardware and software. This github repository is place I store my taken notes when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the related courses on Coursera.org.<br/>
+Nand2Tetris: Build a computer system from the ground up, from nand to tetris (nand is the fundamental logic gate to build others gates), from hardware to software.<br/>
 
-Thank you professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
+This github repository is place I store my taken notes and exercises when reading the book [The Elements of Computing Systems: Building a Modern Computer from First Principles](https://www.amazon.com/Elements-Computing-Systems-Building-Principles/dp/0262640686) and learning the [related courses](https://www.coursera.org/learn/build-a-computer) on Coursera.org.<br/>
 
-> *What I hear, I forget; What I see, I remember; What I do, I understand*
+Thanks professor Noam Nisan and professor Shimon Shocken for writing a super cool book and creating excellent tools and teaching great courses.
+
+> *What I hear, I forget; What I see, I remember; What I do, I understand* <br/>
 > —Confucius, 551–479 BC
 
 
@@ -53,9 +55,43 @@ Thank you professor Noam Nisan and professor Shimon Shocken for writing a super 
 * **Memory**
 <br />![ram](images/ram.png)
 
+
 ### [Chapter 4: Machine language](nand2tetris/projects/04)
+* **A Instruction**
+<br />![a](images/a-instruction.png)
+* **C Instruction**
+<br />![a](images/c-instruction.png)
+
+
 ### [Chapter 5: Computer architecture](nand2tetris/projects/05)
+* **Central Processing Unit (CPU) of Hack Computer**
+    * *CPU Abstraction*
+    <br />![abstraction](images/cpu-abstraction.png)
+    * *CPU Implementation*
+    <br />![implementation](images/cpu-implementation.png)
+    
+* **Hack Architecture**
+<br />![hack](images/hack-architecture.png)
+
+
 ### [Chapter 6: Assembler](nand2tetris/projects/06)
+<br />![assembler](images/assembler.png)
+
+* **Symbols**
+    * *Label symbols* (In the program above *LOOP* and *END* are label symbols) are used to mark the memory location of the next instruction in the program. Label symbols are used for *control flow* in the program.
+    * *Variable symbols* (In the program above *i* and *sum* are variable symbols) are treated as *variable*. Variables are mapped to consecutive memory locations.
+    
+* **Symbols table**: Since Hack instructions can contain symbols, the symbols must be resolved into actual addresses.
+
+    | Symbol     | Memory location |
+    | :-------   | :----------:    |
+    | i          | 16              |
+    | sum        | 17              |
+    | LOOP       | 4               |
+    | END        | 18              |
+
+    The table above is the symbol table for the program above. Since in Hack system we allocate memory for variable from memory 16 so the memory location for variable *i* will be 16 and *sum* will be 17. To specify label *LOOP* and *END* we count the number of instructions in the program so that *LOOP* will be4 and *END* will be 18. 
+
 ### [Chapter 7: Virtual machine I - Stack arithmetic](nand2tetris/projects/07) 
 ### [Chapter 8: Virtual machine II - Program control](nand2tetris/projects/08)
 ### [Chapter 9: High-level language](nand2tetris/projects/09)
