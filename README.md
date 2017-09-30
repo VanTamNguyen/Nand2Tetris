@@ -121,3 +121,8 @@ The compilation of high-level programming language into a low-level one focuses 
 * **Handling flow of control**
 
 ### [Chapter 12: Operating system](nand2tetris/projects/12)
+* **Memory management**
+    * *Heap management*
+    <br/>![](images/heap-management.png)
+        * Free linked list
+        * Block linked list
