@@ -124,5 +124,3 @@ The compilation of high-level programming language into a low-level one focuses 
 * **Memory management**
     * *Heap management*
     <br/>![](images/heap-management.png)
-        * Free linked list
-        * Block linked list
